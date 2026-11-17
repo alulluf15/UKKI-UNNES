@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     // =========================================================================
-    // 2. Realistic Dynamic Prayer Time System (Semarang / WIB)
+    // 2. Realistic Dynamic Prayer Time System & Live Clock (Semarang / WIB)
     // =========================================================================
     const FIVE_PRAYERS = [
         { name: 'Subuh', time: '04:15', minutes: 255 },
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const now = new Date();
         const nowMinutes = now.getHours() * 60 + now.getMinutes();
 
-        let next = FIVE_PRAYERS[0]; // default Subuh (esok hari)
+        let next = FIVE_PRAYERS[0]; // default Subuh esok hari
         for (let i = 0; i < FIVE_PRAYERS.length; i++) {
             if (nowMinutes <= FIVE_PRAYERS[i].minutes) {
                 next = FIVE_PRAYERS[i];
@@ -73,6 +73,36 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         }
         return next;
+    }
+
+    function padZero(num) {
+        return num < 10 ? '0' + num : num;
+    }
+
+    // Live Digital Clock (HH : MM : SS)
+    function tickDigitalClock() {
+        const now = new Date();
+        const h = padZero(now.getHours());
+        const m = padZero(now.getMinutes());
+        const s = padZero(now.getSeconds());
+
+        const clockEl = document.getElementById('prayerLiveClock');
+        if (clockEl) {
+            clockEl.textContent = `${h} : ${m} : ${s}`;
+        }
+    }
+
+    // Dynamic Indonesian Date Formatter
+    function updateIndonesianDate() {
+        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        const now = new Date();
+        const str = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+
+        const dateEl = document.getElementById('prayerModalDate');
+        if (dateEl) {
+            dateEl.textContent = str;
+        }
     }
 
     function refreshPrayerUI() {
@@ -83,33 +113,73 @@ document.addEventListener('DOMContentLoaded', function(){
         if (prayerNameEl) prayerNameEl.textContent = next.name;
         if (prayerTimeEl) prayerTimeEl.textContent = next.time;
 
-        // Highlight next prayer in popover list
-        document.querySelectorAll('.prayer-item').forEach(function(item){
-            if (item.getAttribute('data-name') === next.name) {
-                item.classList.add('is-next');
+        // Highlight next prayer card row with "Berikutnya" badge
+        document.querySelectorAll('.prayer-card-row').forEach(function(row){
+            if (row.getAttribute('data-name') === next.name) {
+                row.classList.add('is-next');
             } else {
-                item.classList.remove('is-next');
+                row.classList.remove('is-next');
             }
         });
     }
 
+    // Initialize prayer UI & clock
     refreshPrayerUI();
-    // Update automatically every 60 seconds
-    setInterval(refreshPrayerUI, 60000);
+    tickDigitalClock();
+    updateIndonesianDate();
 
-    // Prayer Popover Toggle
-    const prayerWrap = document.querySelector('.prayer-widget-wrap');
-    const prayerBtn = document.getElementById('pr');
+    // Intervals
+    setInterval(tickDigitalClock, 1000);
+    setInterval(refreshPrayerUI, 30000);
 
-    if(prayerBtn && prayerWrap){
-        prayerBtn.addEventListener('click', function(e){
+    // =========================================================================
+    // 3. Prayer Modal Dialog Open & Close Controls
+    // =========================================================================
+    const prayerModal = document.getElementById('prayerModal');
+    const openPrayerBtn = document.getElementById('pr');
+    const closePrayerBtn = document.getElementById('closePrayerModal');
+
+    function openPrayerModal() {
+        if (prayerModal) {
+            prayerModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            tickDigitalClock();
+            refreshPrayerUI();
+        }
+    }
+
+    function closePrayerModal() {
+        if (prayerModal) {
+            prayerModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (openPrayerBtn) {
+        openPrayerBtn.addEventListener('click', function(e){
+            e.preventDefault();
             e.stopPropagation();
-            prayerWrap.classList.toggle('is-open');
+            openPrayerModal();
+        });
+    }
+
+    if (closePrayerBtn) {
+        closePrayerBtn.addEventListener('click', function(e){
+            e.stopPropagation();
+            closePrayerModal();
+        });
+    }
+
+    if (prayerModal) {
+        prayerModal.addEventListener('click', function(e){
+            if (e.target === prayerModal) {
+                closePrayerModal();
+            }
         });
     }
 
     // =========================================================================
-    // 3. Mobile Navigation Drawer Toggle
+    // 4. Mobile Navigation Drawer Toggle
     // =========================================================================
     const burgerBtn = document.getElementById('bg');
     const mobileDrawer = document.getElementById('mobileDrawer');
@@ -136,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     // =========================================================================
-    // 4. Desktop NavigationMenu Trigger Click Toggle
+    // 5. Desktop NavigationMenu Trigger Click Toggle
     // =========================================================================
     const triggers = document.querySelectorAll('.nav-trigger');
     triggers.forEach(function(trigger){
@@ -150,7 +220,6 @@ document.addEventListener('DOMContentLoaded', function(){
             document.querySelectorAll('.nav-menu-item').forEach(function(item){
                 item.classList.remove('is-open');
             });
-            if(prayerWrap) prayerWrap.classList.remove('is-open');
 
             // Toggle current item
             if(!isOpen){
@@ -166,16 +235,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 item.classList.remove('is-open');
             });
         }
-        if(!e.target.closest('.prayer-widget-wrap')){
-            if(prayerWrap) prayerWrap.classList.remove('is-open');
-        }
     });
 
-    // Close with Escape key
+    // Close on Escape key
     document.addEventListener('keydown', function(e){
         if(e.key === 'Escape'){
+            closePrayerModal();
             if(mobileDrawer) mobileDrawer.classList.remove('active');
-            if(prayerWrap) prayerWrap.classList.remove('is-open');
             document.querySelectorAll('.nav-menu-item').forEach(function(item){
                 item.classList.remove('is-open');
             });

@@ -490,99 +490,268 @@ header {
     transform: rotate(180deg);
 }
 
-/* Prayer Schedule Popover */
-.prayer-popover {
+/* ==========================================================================
+   Modern Prayer Schedule Modal (Exact Reference Match)
+   ========================================================================== */
+.prayer-modal-overlay {
     display: none;
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    width: 240px;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.prayer-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.prayer-modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
     background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-    padding: 14px;
-    z-index: 110;
-    transform-origin: top right;
-    animation: popoverFadeIn 0.2s ease forwards;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    transform: scale(0.92) translateY(12px);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-:root[data-theme="dark"] .prayer-popover {
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+.prayer-modal-overlay.active .prayer-modal-card {
+    transform: scale(1) translateY(0);
 }
 
-.prayer-widget-wrap.is-open .prayer-popover {
-    display: block;
+/* Gradient Header Section */
+.prayer-modal-header {
+    position: relative;
+    background: linear-gradient(160deg, #00897b 0%, #00695c 45%, #004d40 100%);
+    padding: 28px 20px 22px;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
 }
 
-@keyframes popoverFadeIn {
-    from { opacity: 0; transform: translateY(-4px) scale(0.96); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+/* Mosque Silhouette Watermark & Circles */
+.prayer-modal-header::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-.prayer-popover-header {
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 10px;
+.prayer-modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-.prayer-popover-header b {
-    display: block;
-    font: 600 13px 'Poppins', sans-serif;
-    color: var(--ink);
+/* Close Button (✕) */
+.prayer-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s ease;
+    z-index: 2;
 }
 
-.prayer-popover-header small {
-    display: block;
-    font-size: 11px;
-    color: var(--mut);
-    margin-top: 1px;
+.prayer-modal-close:hover {
+    background: rgba(255, 255, 255, 0.38);
+    transform: rotate(90deg);
 }
 
-.prayer-list {
+/* Mosque Circular Icon */
+.prayer-modal-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Timezone Capsule (● WIB) */
+.prayer-timezone-capsule {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #fff;
+    font: 600 11px 'Poppins', sans-serif;
+    letter-spacing: .03em;
+    margin-top: 12px;
+}
+
+.timezone-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #6ee7b7;
+    box-shadow: 0 0 8px #6ee7b7;
+}
+
+/* Live Digital Clock */
+.prayer-live-clock {
+    font: 700 34px 'Poppins', monospace, sans-serif;
+    letter-spacing: 0.14em;
+    color: #fff;
+    margin: 10px 0 6px;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+}
+
+.prayer-modal-title {
+    font: 700 17px 'Poppins', sans-serif;
+    color: #fff;
+    margin-bottom: 3px;
+}
+
+.prayer-modal-date {
+    font: 500 13px 'Mulish', sans-serif;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 5px;
+}
+
+.prayer-modal-region {
+    font: 500 11px 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.02em;
+}
+
+/* Bottom Section (Prayer Rows) */
+.prayer-modal-body {
+    background: var(--card);
+    padding: 20px 18px 24px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 10px;
 }
 
-.prayer-item {
+.prayer-card-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 10px;
-    border-radius: 8px;
-    font-size: 12.5px;
+    padding: 13px 16px;
+    border-radius: 14px;
+    background: var(--bg);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.prayer-card-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.prayer-card-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid #00897b;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.prayer-card-name {
+    font: 600 14.5px 'Poppins', sans-serif;
     color: var(--ink);
-    transition: background 0.15s ease;
 }
 
-.prayer-item b {
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    color: var(--mut);
+.prayer-card-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.prayer-item.is-next {
-    background: rgba(0, 121, 107, 0.12);
-    color: var(--pri);
-    font-weight: 600;
+.prayer-badge-next {
+    display: none;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #00897b;
+    color: #fff;
+    font: 600 11px 'Poppins', sans-serif;
+    letter-spacing: .02em;
 }
 
-.prayer-item.is-next b {
-    color: var(--pri);
+.prayer-card-time {
+    font: 600 14.5px 'Poppins', sans-serif;
+    color: var(--ink);
+}
+
+/* Active Highlight Row (Berikutnya) */
+.prayer-card-row.is-next {
+    background: #e6f7f4;
+    border-color: rgba(0, 137, 123, 0.3);
+}
+
+:root[data-theme="dark"] .prayer-card-row.is-next {
+    background: rgba(0, 137, 123, 0.2);
+    border-color: rgba(43, 179, 146, 0.35);
+}
+
+.prayer-card-row.is-next .prayer-card-dot {
+    background: #00897b;
+    box-shadow: 0 0 0 3px rgba(0, 137, 123, 0.2);
+}
+
+.prayer-card-row.is-next .prayer-card-name {
+    color: #00897b;
     font-weight: 700;
 }
 
-.prayer-popover-footer {
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 1px solid var(--line);
-    text-align: center;
+:root[data-theme="dark"] .prayer-card-row.is-next .prayer-card-name {
+    color: #2bb392;
 }
 
-.prayer-popover-footer small {
-    font-size: 10.5px;
-    color: var(--mut);
+.prayer-card-row.is-next .prayer-badge-next {
+    display: inline-block;
+}
+
+.prayer-card-row.is-next .prayer-card-time {
+    color: #00897b;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+:root[data-theme="dark"] .prayer-card-row.is-next .prayer-card-time {
+    color: #2bb392;
 }
 
 /* Mobile Burger Button */

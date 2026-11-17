@@ -122,35 +122,66 @@ $prayerSchedule = \App\Core\PrayerTime::getSchedule();
 
         <!-- Action Tools (Sisi Kanan) -->
         <div class="header-tools">
-            <!-- Prayer Time Dynamic Widget with Interactive Popover -->
-            <div class="prayer-widget-wrap">
-                <button class="pray" id="pr" type="button" aria-expanded="false" title="Klik untuk melihat jadwal shalat 5 waktu">
-                    🕌<span><span id="prayerName"><?= htmlspecialchars($nextPrayer['name']) ?></span> <b id="prayerTime"><?= htmlspecialchars($nextPrayer['time']) ?></b></span>
-                    <svg class="prayer-caret" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                <div class="prayer-popover" id="prayerPopover">
-                    <div class="prayer-popover-header">
-                        <b>Jadwal Shalat Hari Ini</b>
-                        <small>Kota Semarang & Sekitarnya (WIB)</small>
-                    </div>
-                    <div class="prayer-list">
-                        <?php foreach($prayerSchedule as $name => $time): ?>
-                            <div class="prayer-item <?= ($name === $nextPrayer['name']) ? 'is-next' : '' ?>" data-name="<?= htmlspecialchars($name) ?>">
-                                <span><?= htmlspecialchars($name) ?></span>
-                                <b><?= htmlspecialchars($time) ?> WIB</b>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <div class="prayer-popover-footer">
-                        <small>Sumber: Kemenag RI (Perkiraan)</small>
-                    </div>
-                </div>
-            </div>
+            <!-- Prayer Time Dynamic Widget Button -->
+            <button class="pray" id="pr" type="button" aria-haspopup="dialog" title="Klik untuk membuka jadwal shalat">
+                🕌<span><span id="prayerName"><?= htmlspecialchars($nextPrayer['name']) ?></span> <b id="prayerTime"><?= htmlspecialchars($nextPrayer['time']) ?></b></span>
+            </button>
 
             <!-- Mobile Burger Button -->
             <button class="burger" id="bg" aria-label="Buka menu navigasi">☰</button>
+        </div>
+    </div>
+
+    <!-- Prayer Schedule Modal Dialog (Exact Reference Match) -->
+    <div class="prayer-modal-overlay" id="prayerModal" role="dialog" aria-modal="true" aria-labelledby="modalPrayerTitle">
+        <div class="prayer-modal-card">
+            <!-- Top Gradient Header -->
+            <div class="prayer-modal-header">
+                <button type="button" class="prayer-modal-close" id="closePrayerModal" aria-label="Tutup modal">✕</button>
+                
+                <!-- Mosque Icon -->
+                <div class="prayer-modal-icon">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2C10.5 4 8 6 8 8v12h8V8c0-2-2.5-4-4-6z"/>
+                        <path d="M4 11c-.5 1-1 2-1 3v6h5v-6c0-1-.5-2-1-3a2.5 2.5 0 0 0-3 0z"/>
+                        <path d="M20 11c.5 1 1 2 1 3v6h-5v-6c0-1 .5-2 1-3a2.5 2.5 0 0 1 3 0z"/>
+                        <path d="M10 20v-4a2 2 0 0 1 4 0v4"/>
+                        <circle cx="12" cy="2" r="0.5" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <!-- Timezone Capsule (● WIB) -->
+                <div class="prayer-timezone-capsule">
+                    <span class="timezone-dot"></span>
+                    <span>WIB</span>
+                </div>
+
+                <!-- Live Digital Clock -->
+                <div class="prayer-live-clock" id="prayerLiveClock"><?= date('H : i : s') ?></div>
+
+                <!-- Title & Region -->
+                <div class="prayer-modal-title" id="modalPrayerTitle">Jadwal Sholat Hari Ini</div>
+                <div class="prayer-modal-date" id="prayerModalDate"><?= \App\Core\PrayerTime::getFormattedDate() ?></div>
+                <div class="prayer-modal-region">Untuk Wilayah KOTA SEMARANG & Sekitarnya</div>
+            </div>
+
+            <!-- Bottom Prayer Cards -->
+            <div class="prayer-modal-body">
+                <?php foreach(\App\Core\PrayerTime::getFivePrayers() as $name => $time): 
+                    $isNext = ($name === $nextPrayer['name']);
+                ?>
+                    <div class="prayer-card-row <?= $isNext ? 'is-next' : '' ?>" data-name="<?= htmlspecialchars($name) ?>">
+                        <div class="prayer-card-left">
+                            <span class="prayer-card-dot"></span>
+                            <span class="prayer-card-name"><?= htmlspecialchars($name) ?></span>
+                        </div>
+                        <div class="prayer-card-right">
+                            <span class="prayer-badge-next">Berikutnya</span>
+                            <span class="prayer-card-time"><?= htmlspecialchars($time) ?></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 
