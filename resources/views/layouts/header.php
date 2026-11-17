@@ -124,7 +124,11 @@ $prayerSchedule = \App\Core\PrayerTime::getSchedule();
         <div class="header-tools">
             <!-- Prayer Time Dynamic Widget Button -->
             <button class="pray" id="pr" type="button" aria-haspopup="dialog" title="Klik untuk membuka jadwal shalat">
-                🕌<span><span id="prayerName"><?= htmlspecialchars($nextPrayer['name']) ?></span> <b id="prayerTime"><?= htmlspecialchars($nextPrayer['time']) ?></b></span>
+                <span class="pray-icon">🕌</span>
+                <span class="pray-info">
+                    <span class="pray-name" id="prayerName"><?= htmlspecialchars($nextPrayer['name']) ?></span>
+                    <b class="pray-time" id="prayerTime"><?= htmlspecialchars($nextPrayer['time']) ?></b>
+                </span>
             </button>
 
             <!-- Mobile Burger Button -->
