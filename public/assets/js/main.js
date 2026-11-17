@@ -26,12 +26,19 @@ document.addEventListener('DOMContentLoaded', function(){
     // 2. Mobile Navigation Drawer Toggle
     const burgerBtn = document.getElementById('bg');
     const mobileDrawer = document.getElementById('mobileDrawer');
+    const closeDrawerBtn = document.getElementById('closeDrawer');
 
     if(burgerBtn && mobileDrawer){
         burgerBtn.addEventListener('click', function(e){
             e.stopPropagation();
             mobileDrawer.classList.toggle('active');
         });
+
+        if(closeDrawerBtn){
+            closeDrawerBtn.addEventListener('click', function(){
+                mobileDrawer.classList.remove('active');
+            });
+        }
 
         // Close when clicking outside content (on backdrop)
         mobileDrawer.addEventListener('click', function(e){

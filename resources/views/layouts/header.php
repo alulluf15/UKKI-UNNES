@@ -15,16 +15,18 @@ $activePage = $activePage ?? '';
 <body>
 <header>
     <div class="wrap nav">
-        <!-- Logo -->
-        <a class="logo" href="/beranda" aria-label="UKKI UNNES">
-            <img src="/assets/img/logo.png" alt="Logo" style="width:38px;height:38px;border-radius:50%;object-fit:cover;" onerror="this.style.display='none'">
-            <div>
-                <b>UKKI</b>
-                <small>UNIT KEGIATAN KEROHANIAN ISLAM</small>
-            </div>
-        </a>
+        <!-- Brand / Logo (Sisi Kiri) -->
+        <div class="header-brand">
+            <a class="logo" href="/beranda" aria-label="UKKI UNNES">
+                <img src="/assets/img/logo.png" alt="Logo UKKI" onerror="this.style.display='none'">
+                <div>
+                    <b>UKKI</b>
+                    <small>UNIT KEGIATAN KEROHANIAN ISLAM</small>
+                </div>
+            </a>
+        </div>
 
-        <!-- Desktop NavigationMenu (shadcn style) -->
+        <!-- Desktop NavigationMenu (Sisi Tengah - Balanced) -->
         <nav class="nav-menu-root" aria-label="Menu utama">
             <ul class="nav-menu-list">
                 <!-- Beranda -->
@@ -85,11 +87,11 @@ $activePage = $activePage ?? '';
                             </a>
                             <a href="/store-ukki" class="nav-list-item">
                                 <div class="nav-item-title">🛍️ Store UKKI</div>
-                                <p class="nav-item-desc">Merchandise dakwah & peminjaman alat inventaris.</p>
+                                <p class="nav-item-desc">Merchandise dakwah & peminjaman inventaris.</p>
                             </a>
                             <a href="/donasi" class="nav-list-item">
                                 <div class="nav-item-title">🤝 Donasi Dakwah</div>
-                                <p class="nav-item-desc">Infaq & sedekah untuk operasional kebaikan.</p>
+                                <p class="nav-item-desc">Infaq & sedekah operasional dakwah.</p>
                             </a>
                             <a href="/informasi" class="nav-list-item">
                                 <div class="nav-item-title">📢 Informasi Maba</div>
@@ -116,10 +118,13 @@ $activePage = $activePage ?? '';
             </ul>
         </nav>
 
-        <!-- Tools & Quick Action -->
-        <div class="tools">
-            <button class="pray" id="pr" title="Jadwal Shalat">🕌<span>Maghrib<b>17:54</b></span></button>
+        <!-- Action Tools (Sisi Kanan) -->
+        <div class="header-tools">
+            <button class="pray" id="pr" title="Jadwal Shalat">
+                🕌<span>Maghrib<b>17:54</b></span>
+            </button>
             <button class="theme" id="th" aria-label="Ganti tema" title="Ganti Tema">◐</button>
+            <a href="/donasi" class="btn-header-cta" title="Infaq & Donasi Dakwah">Infaq Dakwah</a>
             <button class="burger" id="bg" aria-label="Buka menu navigasi">☰</button>
         </div>
     </div>
@@ -127,6 +132,13 @@ $activePage = $activePage ?? '';
     <!-- Mobile Drawer Navigation -->
     <div class="mobile-nav-drawer" id="mobileDrawer">
         <div class="mobile-nav-content">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:14px;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <b style="font-size:18px;font-family:'Poppins';">UKKI UNNES</b>
+                </div>
+                <button id="closeDrawer" style="background:var(--line);border:0;border-radius:8px;width:32px;height:32px;font-size:16px;cursor:pointer;">✕</button>
+            </div>
+
             <div class="mobile-nav-section-title">Menu Utama</div>
             <a href="/beranda" class="mobile-nav-link <?= ($activePage == 'beranda') ? 'on' : '' ?>">
                 Beranda
