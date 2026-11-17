@@ -88,10 +88,193 @@ section.s{padding:50px 0}
 .btn:hover{filter:brightness(1.1)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--dk);color:#fff;padding:10px 20px;border-radius:999px;font:600 13px 'Poppins';display:none;z-index:50}
 
-footer{background:radial-gradient(circle at 80% 90%,#176b52,#0a3a2d 60%);color:#fff;padding:44px 0 28px;margin-top:30px}
-footer h3{font-size:19px}
-footer .h{color:#2bb392;font:600 12px 'Poppins';margin:4px 0 12px}
-.soc{display:flex;gap:10px;margin-top:16px}
-.soc a{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font:700 12.5px 'Poppins';color:#fff}
+/* ==========================================================================
+   Modern Footer (Footer-01 Component)
+   ========================================================================== */
+.site-footer {
+    background: var(--card);
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+    padding: 60px 0 36px;
+    margin-top: 60px;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    row-gap: 40px;
+    padding-bottom: 48px;
+}
+
+.footer-col-brand {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-brand-logo b {
+    font: 700 22px 'Poppins', sans-serif;
+    line-height: 1.1;
+    border-left: 1px solid var(--line);
+    padding-left: 10px;
+    color: var(--ink);
+}
+
+.footer-brand-logo small {
+    display: block;
+    font: 600 8.5px 'Poppins', sans-serif;
+    color: var(--mut);
+    letter-spacing: .05em;
+    margin-top: 2px;
+}
+
+.footer-brand-desc {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--mut);
+    max-width: 360px;
+}
+
+.footer-social-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 4px;
+}
+
+.footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--mut);
+    transition: all 0.2s ease;
+}
+
+.footer-social-link:hover {
+    color: var(--pri);
+    border-color: var(--pri);
+    background: var(--card);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.15);
+}
+
+.footer-col-spacer {
+    grid-column: span 1;
+}
+
+.footer-col-nav {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-col-contact {
+    grid-column: span 3;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-col-title {
+    font: 600 15px 'Poppins', sans-serif;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+}
+
+.footer-link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-link-list a {
+    font-size: 14px;
+    color: var(--mut);
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.footer-link-list a:hover {
+    color: var(--pri);
+    transform: translateX(2px);
+}
+
+.footer-contact-item {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--mut);
+}
+
+.footer-separator {
+    border: 0;
+    height: 1px;
+    background: var(--line);
+    margin: 0 0 28px;
+}
+
+.footer-copyright {
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--mut);
+}
+
+@media (max-width: 1024px) {
+    .footer-col-brand {
+        grid-column: span 12;
+    }
+    .footer-col-spacer {
+        display: none;
+    }
+    .footer-col-nav {
+        grid-column: span 4;
+    }
+    .footer-col-contact {
+        grid-column: span 4;
+    }
+}
+
+@media (max-width: 640px) {
+    .site-footer {
+        padding: 44px 0 28px;
+        margin-top: 40px;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        row-gap: 32px;
+        padding-bottom: 36px;
+    }
+    .footer-col-brand,
+    .footer-col-nav,
+    .footer-col-contact {
+        grid-column: span 1;
+    }
+    .footer-link-list {
+        gap: 10px;
+    }
+}
 
 @media(max-width:940px){.burger{display:block}nav{display:none}}
