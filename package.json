@@ -1,0 +1,19 @@
+{
+  "name": "ukki-unnes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "php -S localhost:8000 -t public",
+    "dev": "php -S localhost:8000 -t public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.33",
+    "tailwindcss": "^4.3.5"
+  }
+}

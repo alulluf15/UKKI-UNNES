@@ -1,0 +1,11 @@
+{
+  "name": "ukki/unnes",
+  "description": "Website Resmi UKKI UNNES",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
