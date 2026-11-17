@@ -124,7 +124,6 @@ $activePage = $activePage ?? '';
                 🕌<span>Maghrib<b>17:54</b></span>
             </button>
             <button class="theme" id="th" aria-label="Ganti tema" title="Ganti Tema">◐</button>
-            <a href="/donasi" class="btn-header-cta" title="Infaq & Donasi Dakwah">Infaq Dakwah</a>
             <button class="burger" id="bg" aria-label="Buka menu navigasi">☰</button>
         </div>
     </div>
