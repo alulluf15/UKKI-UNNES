@@ -104,17 +104,15 @@ $activePage = $activePage ?? '';
                     <a href="/lainnya" class="nav-link-direct <?= ($activePage == 'lainnya') ? 'on' : '' ?>">Lainnya</a>
                 </li>
 
-                <!-- Admin Status -->
+                <!-- Admin Status (Hanya tampil jika admin sedang login) -->
+                <?php if($isAdmin): ?>
                 <li class="nav-menu-item">
-                    <?php if($isAdmin): ?>
-                        <div style="display:flex;align-items:center;gap:6px;">
-                            <a href="/admin" class="nav-admin-badge <?= ($activePage == 'admin') ? 'on' : '' ?>">⚙️ Admin</a>
-                            <a href="/admin/logout" style="color:#ef4444;font-size:12px;font-weight:600;padding:4px 8px;">Logout</a>
-                        </div>
-                    <?php else: ?>
-                        <a href="/admin/login" style="opacity:0.4;font-size:11.5px;color:var(--mut);padding:4px 8px;">Admin</a>
-                    <?php endif; ?>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                        <a href="/admin" class="nav-admin-badge <?= ($activePage == 'admin') ? 'on' : '' ?>">⚙️ Admin</a>
+                        <a href="/admin/logout" style="color:#ef4444;font-size:12px;font-weight:600;padding:4px 8px;">Logout</a>
+                    </div>
                 </li>
+                <?php endif; ?>
             </ul>
         </nav>
 
@@ -179,10 +177,6 @@ $activePage = $activePage ?? '';
                 <div class="mobile-nav-section-title">Administrator</div>
                 <a href="/admin" class="mobile-nav-link on">⚙️ Dashboard Admin</a>
                 <a href="/admin/logout" class="mobile-nav-link" style="color:#ef4444;">Logout</a>
-            <?php else: ?>
-                <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--line);text-align:center;">
-                    <a href="/admin/login" style="font-size:12px;color:var(--mut);">Login Admin</a>
-                </div>
             <?php endif; ?>
         </div>
     </div>
