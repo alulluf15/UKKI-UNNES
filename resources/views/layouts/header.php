@@ -1,6 +1,8 @@
 <?php
 $isAdmin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 $activePage = $activePage ?? '';
+$nextPrayer = \App\Core\PrayerTime::getNextPrayer();
+$prayerSchedule = \App\Core\PrayerTime::getSchedule();
 ?>
 <!DOCTYPE html>
 <html lang="id" data-theme="light">
@@ -120,10 +122,34 @@ $activePage = $activePage ?? '';
 
         <!-- Action Tools (Sisi Kanan) -->
         <div class="header-tools">
-            <button class="pray" id="pr" title="Jadwal Shalat">
-                🕌<span>Maghrib<b>17:54</b></span>
-            </button>
-            <button class="theme" id="th" aria-label="Ganti tema" title="Ganti Tema">◐</button>
+            <!-- Prayer Time Dynamic Widget with Interactive Popover -->
+            <div class="prayer-widget-wrap">
+                <button class="pray" id="pr" type="button" aria-expanded="false" title="Klik untuk melihat jadwal shalat 5 waktu">
+                    🕌<span><span id="prayerName"><?= htmlspecialchars($nextPrayer['name']) ?></span> <b id="prayerTime"><?= htmlspecialchars($nextPrayer['time']) ?></b></span>
+                    <svg class="prayer-caret" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="prayer-popover" id="prayerPopover">
+                    <div class="prayer-popover-header">
+                        <b>Jadwal Shalat Hari Ini</b>
+                        <small>Kota Semarang & Sekitarnya (WIB)</small>
+                    </div>
+                    <div class="prayer-list">
+                        <?php foreach($prayerSchedule as $name => $time): ?>
+                            <div class="prayer-item <?= ($name === $nextPrayer['name']) ? 'is-next' : '' ?>" data-name="<?= htmlspecialchars($name) ?>">
+                                <span><?= htmlspecialchars($name) ?></span>
+                                <b><?= htmlspecialchars($time) ?> WIB</b>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="prayer-popover-footer">
+                        <small>Sumber: Kemenag RI (Perkiraan)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Burger Button -->
             <button class="burger" id="bg" aria-label="Buka menu navigasi">☰</button>
         </div>
     </div>
@@ -183,6 +209,11 @@ $activePage = $activePage ?? '';
                 Lainnya & FAQ
                 <small>Kontak & sekretariat</small>
             </a>
+
+            <div class="mobile-nav-section-title">Pengaturan Tampilan</div>
+            <button class="mobile-theme-toggle" id="mobileThemeToggle" type="button">
+                <span>◐ Ganti Mode Tampilan (Light / Dark)</span>
+            </button>
 
             <?php if($isAdmin): ?>
                 <div class="mobile-nav-section-title">Administrator</div>

@@ -112,10 +112,18 @@
         <!-- Separator -->
         <hr class="footer-separator">
 
-        <!-- Copyright -->
-        <p class="footer-copyright">
-            © 2026 UKKI UNNES. All Rights Reserved.
-        </p>
+        <!-- Bottom Row: Copyright + Theme Switcher -->
+        <div class="footer-bottom-row">
+            <p class="footer-copyright">
+                © 2026 UKKI UNNES. All Rights Reserved.
+            </p>
+            <div class="footer-theme-switcher">
+                <button class="footer-theme-btn" id="footerThemeToggle" type="button" aria-label="Ganti mode tampilan">
+                    <span class="theme-btn-icon" id="themeBtnIcon">◐</span>
+                    <span id="themeToggleText">Mode Terang</span>
+                </button>
+            </div>
+        </div>
     </div>
 </footer>
 <div class="toast" id="toast" role="status"></div>

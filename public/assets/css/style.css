@@ -432,7 +432,13 @@ header {
     flex-shrink: 0;
 }
 
-/* Soft Pill Prayer Widget */
+/* ==========================================================================
+   Interactive Prayer Time Widget & Popover
+   ========================================================================== */
+.prayer-widget-wrap {
+    position: relative;
+}
+
 .pray {
     background: rgba(0, 121, 107, 0.08);
     color: var(--pri);
@@ -444,14 +450,21 @@ header {
     align-items: center;
     gap: 7px;
     white-space: nowrap;
-    cursor: default;
-    transition: all 0.2s ease;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root[data-theme="dark"] .pray {
     background: rgba(43, 179, 146, 0.12);
     color: #2bb392;
     border-color: rgba(43, 179, 146, 0.25);
+}
+
+.pray:hover, .prayer-widget-wrap.is-open .pray {
+    background: rgba(0, 121, 107, 0.15);
+    border-color: var(--pri);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.15);
 }
 
 .pray span {
@@ -466,47 +479,110 @@ header {
     color: var(--ink);
 }
 
-/* Modern Theme Switch Button */
-.theme {
+.prayer-caret {
+    width: 12px;
+    height: 12px;
+    stroke-width: 2;
+    transition: transform 0.25s ease;
+}
+
+.prayer-widget-wrap.is-open .prayer-caret {
+    transform: rotate(180deg);
+}
+
+/* Prayer Schedule Popover */
+.prayer-popover {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 240px;
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 10px;
-    width: 38px;
-    height: 38px;
-    color: var(--ink);
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    font-size: 15px;
-    transition: all 0.2s ease;
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    padding: 14px;
+    z-index: 110;
+    transform-origin: top right;
+    animation: popoverFadeIn 0.2s ease forwards;
 }
 
-.theme:hover {
-    background: var(--line);
-    transform: rotate(15deg);
+:root[data-theme="dark"] .prayer-popover {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
 }
 
-/* Header Quick CTA Button */
-.btn-header-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    height: 38px;
-    padding: 0 16px;
-    border-radius: 999px;
-    background: var(--pri);
-    color: #fff !important;
+.prayer-widget-wrap.is-open .prayer-popover {
+    display: block;
+}
+
+@keyframes popoverFadeIn {
+    from { opacity: 0; transform: translateY(-4px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.prayer-popover-header {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 10px;
+}
+
+.prayer-popover-header b {
+    display: block;
     font: 600 13px 'Poppins', sans-serif;
-    text-decoration: none;
-    box-shadow: 0 3px 12px rgba(0, 121, 107, 0.25);
-    transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-    white-space: nowrap;
+    color: var(--ink);
 }
 
-.btn-header-cta:hover {
-    filter: brightness(1.1);
-    transform: translateY(-1px);
-    box-shadow: 0 5px 16px rgba(0, 121, 107, 0.35);
+.prayer-popover-header small {
+    display: block;
+    font-size: 11px;
+    color: var(--mut);
+    margin-top: 1px;
+}
+
+.prayer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.prayer-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    color: var(--ink);
+    transition: background 0.15s ease;
+}
+
+.prayer-item b {
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: var(--mut);
+}
+
+.prayer-item.is-next {
+    background: rgba(0, 121, 107, 0.12);
+    color: var(--pri);
+    font-weight: 600;
+}
+
+.prayer-item.is-next b {
+    color: var(--pri);
+    font-weight: 700;
+}
+
+.prayer-popover-footer {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+}
+
+.prayer-popover-footer small {
+    font-size: 10.5px;
+    color: var(--mut);
 }
 
 /* Mobile Burger Button */
@@ -691,10 +767,67 @@ section.s{padding:50px 0}
     margin: 0 0 28px;
 }
 
+/* Footer Bottom Row & Theme Switcher */
+.footer-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
 .footer-copyright {
-    text-align: center;
     font-size: 13.5px;
     color: var(--mut);
+    margin: 0;
+}
+
+.footer-theme-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font: 500 12.5px 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.footer-theme-btn:hover {
+    border-color: var(--pri);
+    color: var(--pri);
+    background: var(--card);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 121, 107, 0.1);
+}
+
+.theme-btn-icon {
+    font-size: 14px;
+}
+
+/* Mobile Drawer Theme Toggle */
+.mobile-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font: 600 13px 'Poppins', sans-serif;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: all 0.2s ease;
+}
+
+.mobile-theme-toggle:hover {
+    background: var(--line);
+    color: var(--pri);
 }
 
 @media (max-width: 1024px) {
