@@ -1,35 +1,42 @@
 <?php
+
 namespace App\Models;
 
-class Auth {
-    const ADMIN_USER = 'admin';
-    const ADMIN_PASS = 'ukkiunnes2026';
-
+class Auth
+{
     /**
      * Attempt login with credentials
      */
-    public static function attempt(string $username, string $password): bool {
-        if ($username === self::ADMIN_USER && $password === self::ADMIN_PASS) {
-            $_SESSION['is_admin'] = true;
-            $_SESSION['admin_user'] = $username;
+    public static function attempt(string $username, string $password): bool
+    {
+        $adminUser = env('ADMIN_USER', 'admin');
+        $adminPass = env('ADMIN_PASS', 'ukkiunnes2026');
+
+        if ($username === $adminUser && $password === $adminPass) {
+            session([
+                'is_admin' => true,
+                'admin_user' => $username
+            ]);
             return true;
         }
+
         return false;
     }
 
     /**
      * Check if current session is authenticated as admin
      */
-    public static function check(): bool {
-        return isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
+    public static function check(): bool
+    {
+        return session('is_admin') === true;
     }
 
     /**
      * Logout admin session
      */
-    public static function logout(): void {
-        unset($_SESSION['is_admin']);
-        unset($_SESSION['admin_user']);
-        session_destroy();
+    public static function logout(): void
+    {
+        session()->forget(['is_admin', 'admin_user']);
+        session()->regenerate();
     }
 }
