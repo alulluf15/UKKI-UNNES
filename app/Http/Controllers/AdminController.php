@@ -19,7 +19,7 @@ class AdminController extends Controller
         $content = Content::get();
         return view('pages.admin', [
             'content' => $content,
-            'pageTitle' => 'Admin Dashboard - UKKI UNNES',
+            'pageTitle' => 'Dasbor Admin - UKKI UNNES',
             'activePage' => 'admin'
         ]);
     }

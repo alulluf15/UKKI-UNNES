@@ -22,6 +22,7 @@ class ExampleTest extends TestCase
             '/donasi',
             '/lainnya',
             '/admin/login',
+            '/admin/masuk',
         ];
 
         foreach ($routes as $route) {
@@ -34,6 +35,9 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/admin');
         $response->assertRedirect('/admin/login');
+
+        $dashboardResponse = $this->get('/admin/dashboard');
+        $dashboardResponse->assertRedirect('/admin/login');
     }
 
     public function test_admin_can_login_and_access_dashboard(): void
@@ -47,5 +51,8 @@ class ExampleTest extends TestCase
 
         $adminResponse = $this->withSession(['is_admin' => true])->get('/admin');
         $adminResponse->assertStatus(200);
+
+        $customDashboardResponse = $this->withSession(['is_admin' => true])->get('/admin/dashboard');
+        $customDashboardResponse->assertStatus(200);
     }
 }

@@ -1,5 +1,5 @@
 @include('layouts.header')
-<div class="pgh"><div class="wrap"><h1>Admin Dashboard</h1><p>Edit konten hero dan beranda.</p></div></div>
+<div class="pgh"><div class="wrap"><h1>Dasbor Admin</h1><p>Edit konten hero dan beranda.</p></div></div>
 <section class="s"><div class="wrap">
     <?php if(isset($_GET['success'])): ?>
         <div style="background:#10b981;color:#fff;padding:15px;border-radius:12px;margin-bottom:24px;">✅ Perubahan berhasil disimpan!</div>

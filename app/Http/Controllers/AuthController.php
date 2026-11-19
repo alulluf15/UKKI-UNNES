@@ -15,7 +15,7 @@ class AuthController extends Controller
             return redirect()->route('admin');
         }
         return view('pages.admin-login', [
-            'pageTitle' => 'Login Admin - UKKI UNNES'
+            'pageTitle' => 'Masuk Admin - UKKI UNNES'
         ]);
     }
 
@@ -30,8 +30,8 @@ class AuthController extends Controller
         }
 
         return view('pages.admin-login', [
-            'error' => 'Username atau Password salah!',
-            'pageTitle' => 'Login Admin - UKKI UNNES'
+            'error' => 'Nama pengguna atau kata sandi salah!',
+            'pageTitle' => 'Masuk Admin - UKKI UNNES'
         ]);
     }
 

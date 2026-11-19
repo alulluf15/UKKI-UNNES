@@ -113,7 +113,7 @@ $prayerSchedule = \App\Support\PrayerTime::getSchedule();
                 <li class="nav-menu-item">
                     <div style="display:flex;align-items:center;gap:6px;">
                         <a href="/admin" class="nav-admin-badge <?= ($activePage == 'admin') ? 'on' : '' ?>">⚙️ Admin</a>
-                        <a href="/admin/logout" style="color:#ef4444;font-size:12px;font-weight:600;padding:4px 8px;">Logout</a>
+                        <a href="/admin/logout" style="color:#ef4444;font-size:12px;font-weight:600;padding:4px 8px;">Keluar</a>
                     </div>
                 </li>
                 <?php endif; ?>
@@ -248,13 +248,13 @@ $prayerSchedule = \App\Support\PrayerTime::getSchedule();
 
         <div class="mobile-nav-section-title">Pengaturan Tampilan</div>
         <button class="mobile-theme-toggle" id="mobileThemeToggle" type="button">
-            <span>◐ Ganti Mode Tampilan (Light / Dark)</span>
+            <span>◐ Ganti Mode Tampilan (Terang / Gelap)</span>
         </button>
 
         <?php if($isAdmin): ?>
             <div class="mobile-nav-section-title">Administrator</div>
-            <a href="/admin" class="mobile-nav-link on">⚙️ Dashboard Admin</a>
-            <a href="/admin/logout" class="mobile-nav-link" style="color:#ef4444;">Logout</a>
+            <a href="/admin" class="mobile-nav-link on">⚙️ Dasbor Admin</a>
+            <a href="/admin/logout" class="mobile-nav-link" style="color:#ef4444;">Keluar</a>
         <?php endif; ?>
     </div>
 </div>

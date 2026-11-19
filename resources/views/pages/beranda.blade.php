@@ -3,7 +3,7 @@
 <!-- Hero Section exactly matching Screenshot 149 -->
 <div class="hero">
     <div class="wrap">
-        <p class="wl" style="font:600 14px 'Playfair Display',serif;color:#f6d65a;letter-spacing:.08em;text-transform:uppercase;">WELCOME TO</p>
+        <p class="wl" style="font:600 14px 'Playfair Display',serif;color:#f6d65a;letter-spacing:.08em;text-transform:uppercase;">SELAMAT DATANG DI</p>
         <h1 style="font:700 clamp(42px,7vw,72px) 'Playfair Display',serif;color:#f6d65a;margin:4px 0 2px;"><?= htmlspecialchars($content['hero_title']) ?></h1>
         <h2 class="k" style="font:italic 600 clamp(24px,3.5vw,36px) 'Playfair Display',serif;margin-bottom:12px;color:#fff;"><?= htmlspecialchars($content['hero_subtitle']) ?></h2>
         <h3 class="s" style="font:700 clamp(16px,2vw,22px) 'Poppins',serif;color:#f6d65a;text-transform:uppercase;margin-bottom:18px;">SATUKAN SINERGI SELARASKAN AKSI</h3>

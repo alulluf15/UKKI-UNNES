@@ -62,9 +62,9 @@
             <!-- Spacer for large screens -->
             <div class="footer-col-spacer"></div>
 
-            <!-- Sitemap / Navigasi -->
+            <!-- Peta Situs / Navigasi -->
             <div class="footer-col-nav">
-                <p class="footer-col-title">Sitemap</p>
+                <p class="footer-col-title">Peta Situs</p>
                 <ul class="footer-link-list">
                     <li><a href="/beranda">Beranda</a></li>
                     <li><a href="/profil">Profil UKKI</a></li>
@@ -115,7 +115,7 @@
         <!-- Bottom Row: Copyright + Theme Switcher -->
         <div class="footer-bottom-row">
             <p class="footer-copyright">
-                © 2026 UKKI UNNES. All Rights Reserved.
+                © 2026 UKKI UNNES. Hak Cipta Dilindungi.
             </p>
             <div class="footer-theme-switcher">
                 <button class="footer-theme-btn" id="footerThemeToggle" type="button" aria-label="Ganti mode tampilan">
