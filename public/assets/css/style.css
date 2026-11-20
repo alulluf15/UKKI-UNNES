@@ -3359,36 +3359,14 @@ dialog.dept-modal::backdrop {
 }
 .ld-section-title-wrap {
     margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
     padding-bottom: 16px;
     border-bottom: 2px solid var(--line);
 }
-.ld-section-title-main {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-.ld-section-title-main h2 {
+.ld-section-title-wrap h2 {
     font: 700 clamp(22px, 3vw, 28px) 'Poppins', sans-serif;
     color: var(--ink);
     line-height: 1.25;
     margin: 0;
-}
-.ld-section-badge-count {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: 999px;
-    font: 700 12.5px 'Poppins', sans-serif;
-    border: 1px solid var(--line);
-    background: var(--card);
-    color: var(--ink);
-    flex-shrink: 0;
 }
 
 /* Cards Grid */

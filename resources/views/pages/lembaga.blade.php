@@ -20,9 +20,6 @@ if (!isset($ldfList) || !isset($ldjList)) {
     $ldfList = $ldfList ?? $fallbackData['ldf'];
     $ldjList = $ldjList ?? $fallbackData['ldj'];
 }
-
-$countLdf = count($ldfList);
-$countLdj = count($ldjList);
 ?>
 
 <!-- Header Banner Halaman -->
@@ -49,17 +46,7 @@ $countLdj = count($ldjList);
         <section id="bagian-ldf" class="ld-section-block">
             
             <div class="ld-section-title-wrap">
-                <div class="ld-section-title-main">
-                    <h2>Lembaga Dakwah Fakultas (LDF)</h2>
-                </div>
-                <div class="ld-section-badge-count" style="color:var(--pri);border-color:rgba(0,121,107,0.3);background:rgba(0,121,107,0.06);">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                        <path d="M3 9h18"></path>
-                        <path d="M9 21V9"></path>
-                    </svg>
-                    <span><?= $countLdf ?> Lembaga Fakultas</span>
-                </div>
+                <h2>Lembaga Dakwah Fakultas (LDF)</h2>
             </div>
 
             <!-- Grid Kartu LDF -->
@@ -98,23 +85,7 @@ $countLdj = count($ldjList);
         <section id="bagian-ldj" class="ld-section-block">
             
             <div class="ld-section-title-wrap">
-                <div class="ld-section-title-main">
-                    <h2>Lembaga Dakwah Jurusan (LDJ)</h2>
-                </div>
-                <div class="ld-section-badge-count" style="color:var(--ind);border-color:rgba(99,102,241,0.3);background:rgba(99,102,241,0.06);">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="12" cy="12" r="4"></circle>
-                        <path d="M12 2v2"></path>
-                        <path d="M12 20v2"></path>
-                        <path d="m4.93 4.93 1.41 1.41"></path>
-                        <path d="m17.66 17.66 1.41 1.41"></path>
-                        <path d="M2 12h2"></path>
-                        <path d="M20 12h2"></path>
-                        <path d="m6.34 17.66-1.41 1.41"></path>
-                        <path d="m19.07 4.93-1.41 1.41"></path>
-                    </svg>
-                    <span><?= $countLdj ?> Lembaga Jurusan</span>
-                </div>
+                <h2>Lembaga Dakwah Jurusan (LDJ)</h2>
             </div>
 
             <!-- Grid Kartu LDJ -->
