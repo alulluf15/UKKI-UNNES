@@ -44,101 +44,6 @@ $countTotal = $countLdf + $countLdj;
 <section class="s" style="padding-top:40px;">
     <div class="wrap">
 
-        <!-- Intro Banner & Arsitektur Sinergi Dakwah Kampus -->
-        <div class="ld-intro-banner">
-            <div class="ld-intro-text">
-                <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,121,107,0.1);color:var(--pri);padding:5px 12px;border-radius:999px;font:700 11.5px 'Poppins',sans-serif;margin-bottom:12px;letter-spacing:.04em;text-transform:uppercase;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="m4.93 4.93 4.24 4.24"></path>
-                        <path d="m14.83 9.17 4.24-4.24"></path>
-                        <path d="m14.83 14.83 4.24 4.24"></path>
-                        <path d="m9.17 14.83-4.24 4.24"></path>
-                        <circle cx="12" cy="12" r="4"></circle>
-                    </svg>
-                    Sinergi Dakwah 2 Tingkatan UNNES
-                </span>
-                <h2>Harmonisasi Gerak: Tingkat Fakultas & Tingkat Jurusan</h2>
-                <p>
-                    Jaringan dakwah kampus di Universitas Negeri Semarang dibagi menjadi <strong>2 Bagian Utama</strong>:
-                    <strong>Lembaga Dakwah Fakultas (LDF)</strong> yang mengawal dakwah di 9 fakultas, serta <strong>Lembaga Dakwah Jurusan (LDJ)</strong> sebagai simpul pembinaan langsung di tingkat program studi dan kelompok studi mahasiswa.
-                </p>
-            </div>
-            <div class="ld-stats-grid">
-                <div class="ld-stat-card">
-                    <span class="ld-stat-num"><?= $countLdf ?></span>
-                    <span class="ld-stat-label">Bagian 1: LDF</span>
-                    <span class="ld-stat-desc">Tingkat Fakultas</span>
-                </div>
-                <div class="ld-stat-card">
-                    <span class="ld-stat-num"><?= $countLdj ?></span>
-                    <span class="ld-stat-label">Bagian 2: LDJ</span>
-                    <span class="ld-stat-desc">Tingkat Jurusan</span>
-                </div>
-                <div class="ld-stat-card">
-                    <span class="ld-stat-num"><?= $countTotal ?></span>
-                    <span class="ld-stat-label">Total Lembaga</span>
-                    <span class="ld-stat-desc">Satu Barisan Sinergi</span>
-                </div>
-                <div class="ld-stat-card">
-                    <span class="ld-stat-num">1</span>
-                    <span class="ld-stat-label">Episentrum Masjid</span>
-                    <span class="ld-stat-desc">Masjid Ulul Albab (MUA)</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Jump Bar & Live Search (Modern Navigation & Accessibility) -->
-        <div class="ld-nav-jump-bar">
-            <div class="ld-jump-links" role="navigation" aria-label="Navigasi bagian lembaga dakwah">
-                <a href="#bagian-ldf" class="ld-jump-btn active-jump" id="btnJumpLdf">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M3 21h18"></path>
-                        <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
-                    </svg>
-                    1. Lembaga Dakwah Fakultas (LDF)
-                    <span class="ld-tab-count" style="margin-left:4px;"><?= $countLdf ?></span>
-                </a>
-                <a href="#bagian-ldj" class="ld-jump-btn" id="btnJumpLdj">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
-                        <path d="M6 6h10"></path>
-                        <path d="M6 10h10"></path>
-                    </svg>
-                    2. Lembaga Dakwah Jurusan (LDJ)
-                    <span class="ld-tab-count" style="margin-left:4px;"><?= $countLdj ?></span>
-                </a>
-            </div>
-
-            <!-- Live Search Bar -->
-            <div class="ld-search-box">
-                <svg class="ld-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input type="search" 
-                       id="ldSearchInput" 
-                       class="ld-search-input" 
-                       placeholder="Cari nama lembaga, fakultas, atau jurusan..." 
-                       aria-label="Cari lembaga dakwah UNNES">
-                <button type="button" 
-                        id="ldSearchClear" 
-                        class="ld-search-clear" 
-                        aria-label="Hapus kata kunci pencarian">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Live Status Bar -->
-        <div class="ld-status-bar">
-            <span id="ldResultStatus" aria-live="polite">Menampilkan seluruh 2 bagian jaringan lembaga dakwah di UNNES</span>
-            <span style="font-size:12px;color:var(--mut);">Jaringan Sinergi UNNES 1446/1447 H</span>
-        </div>
-
         <!-- =========================================================================
              BAGIAN 1: LEMBAGA DAKWAH FAKULTAS (LDF)
              ========================================================================= -->
@@ -247,11 +152,6 @@ $countTotal = $countLdf + $countLdj;
 
                     </article>
                 <?php endforeach; ?>
-            </div>
-
-            <!-- Empty indicator per bagian LDF -->
-            <div id="ldfEmptyNotice" style="display:none;padding:24px;text-align:center;color:var(--mut);background:var(--card);border:1px dashed var(--line);border-radius:16px;margin-top:16px;">
-                Tidak ada Lembaga Dakwah Fakultas yang cocok dengan kata kunci pencarian.
             </div>
 
         </section>
@@ -381,26 +281,7 @@ $countTotal = $countLdf + $countLdj;
                 <?php endforeach; ?>
             </div>
 
-            <!-- Empty indicator per bagian LDJ -->
-            <div id="ldjEmptyNotice" style="display:none;padding:24px;text-align:center;color:var(--mut);background:var(--card);border:1px dashed var(--line);border-radius:16px;margin-top:16px;">
-                Tidak ada Lembaga Dakwah Jurusan yang cocok dengan kata kunci pencarian.
-            </div>
-
         </section>
-
-        <!-- Empty State Umum (Jika seluruh pencarian kosong) -->
-        <div id="ldEmptyState" class="ld-empty-state" role="status" aria-live="polite">
-            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="var(--mut)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto;" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                <line x1="8" y1="11" x2="14" y2="11"></line>
-            </svg>
-            <h3 class="ld-empty-title">Lembaga Tidak Ditemukan</h3>
-            <p class="ld-empty-desc">Tidak ada lembaga dakwah yang sesuai dengan kata kunci pencarian Anda. Silakan periksa ejaan atau hapus filter pencarian.</p>
-            <button type="button" id="ldResetBtn" class="btn" style="min-height:44px;">
-                Reset Pencarian
-            </button>
-        </div>
 
         <!-- Bagian Episentrum: Masjid Ulul Albab UNNES -->
         <div class="ld-sinergi-wrap">
@@ -528,135 +409,5 @@ $countTotal = $countLdf + $countLdj;
 
     </div>
 </section>
-
-<!-- Client Script: 2 Bagian Jump Navigation & Live Search Filter -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('ldSearchInput');
-    const searchClear = document.getElementById('ldSearchClear');
-    const cardsLdf = Array.from(document.querySelectorAll('#gridLdf .ld-card'));
-    const cardsLdj = Array.from(document.querySelectorAll('#gridLdj .ld-card'));
-    const emptyState = document.getElementById('ldEmptyState');
-    const ldfNotice = document.getElementById('ldfEmptyNotice');
-    const ldjNotice = document.getElementById('ldjEmptyNotice');
-    const statusText = document.getElementById('ldResultStatus');
-    const resetBtn = document.getElementById('ldResetBtn');
-
-    const btnJumpLdf = document.getElementById('btnJumpLdf');
-    const btnJumpLdj = document.getElementById('btnJumpLdj');
-
-    // Smooth Scroll Jump Highlight
-    function updateJumpHighlight() {
-        const secLdf = document.getElementById('bagian-ldf');
-        const secLdj = document.getElementById('bagian-ldj');
-        if (!secLdf || !secLdj) return;
-
-        const scrollY = window.scrollY;
-        const ldfTop = secLdf.offsetTop - 120;
-        const ldjTop = secLdj.offsetTop - 120;
-
-        if (scrollY >= ldjTop) {
-            btnJumpLdf.classList.remove('active-jump');
-            btnJumpLdj.classList.add('active-jump');
-        } else {
-            btnJumpLdf.classList.add('active-jump');
-            btnJumpLdj.classList.remove('active-jump');
-        }
-    }
-    window.addEventListener('scroll', updateJumpHighlight, { passive: true });
-
-    // Live Search Engine
-    function filterCards() {
-        const query = (searchInput.value || '').trim().toLowerCase();
-        let countVisibleLdf = 0;
-        let countVisibleLdj = 0;
-
-        // Filter LDF Cards
-        cardsLdf.forEach(function (card) {
-            const name = card.getAttribute('data-name') || '';
-            const short = card.getAttribute('data-short') || '';
-            const faculty = card.getAttribute('data-faculty') || '';
-
-            const match = !query || name.includes(query) || short.includes(query) || faculty.includes(query);
-            if (match) {
-                card.style.display = 'flex';
-                countVisibleLdf++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-
-        // Filter LDJ Cards
-        cardsLdj.forEach(function (card) {
-            const name = card.getAttribute('data-name') || '';
-            const short = card.getAttribute('data-short') || '';
-            const faculty = card.getAttribute('data-faculty') || '';
-
-            const match = !query || name.includes(query) || short.includes(query) || faculty.includes(query);
-            if (match) {
-                card.style.display = 'flex';
-                countVisibleLdj++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-
-        const totalVisible = countVisibleLdf + countVisibleLdj;
-
-        // Tampilkan/sembunyikan notice per bagian
-        if (ldfNotice) ldfNotice.style.display = (countVisibleLdf === 0 && query) ? 'block' : 'none';
-        if (ldjNotice) ldjNotice.style.display = (countVisibleLdj === 0 && query) ? 'block' : 'none';
-
-        // Tampilkan empty state jika kedua bagian kosong
-        if (emptyState) {
-            if (totalVisible === 0) {
-                emptyState.classList.add('visible');
-            } else {
-                emptyState.classList.remove('visible');
-            }
-        }
-
-        // Update Accessible Live Region
-        if (statusText) {
-            if (query) {
-                statusText.textContent = `Menemukan ${totalVisible} lembaga (${countVisibleLdf} LDF, ${countVisibleLdj} LDJ) untuk pencarian "${query}"`;
-            } else {
-                statusText.textContent = `Menampilkan seluruh 2 bagian (${countVisibleLdf} LDF dan ${countVisibleLdj} LDJ)`;
-            }
-        }
-
-        // Toggle clear button
-        if (searchClear) {
-            if (query.length > 0) {
-                searchClear.classList.add('visible');
-            } else {
-                searchClear.classList.remove('visible');
-            }
-        }
-    }
-
-    if (searchInput) {
-        searchInput.addEventListener('input', filterCards);
-    }
-
-    if (searchClear) {
-        searchClear.addEventListener('click', function () {
-            if (searchInput) {
-                searchInput.value = '';
-                searchInput.focus();
-            }
-            filterCards();
-        });
-    }
-
-    if (resetBtn) {
-        resetBtn.addEventListener('click', function () {
-            if (searchInput) searchInput.value = '';
-            filterCards();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-});
-</script>
 
 @include('layouts.footer')
