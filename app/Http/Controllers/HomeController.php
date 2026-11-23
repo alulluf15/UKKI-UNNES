@@ -19,8 +19,10 @@ class HomeController extends Controller
 
     public function kegiatan(): View
     {
+        $kegiatanData = $this->getKegiatanData();
         return view('pages.kegiatan', [
-            'pageTitle' => 'Kegiatan UKKI UNNES',
+            'kegiatanData' => $kegiatanData,
+            'pageTitle' => 'Kegiatan & Agenda - UKKI UNNES',
             'activePage' => 'kegiatan'
         ]);
     }
@@ -169,10 +171,43 @@ class HomeController extends Controller
                 'desc' => 'Pusat pengelolaan bank data organisasi, riset keumatan, dan analisis kebutuhan dakwah kampus terpadu.',
                 'tagline' => 'Presisi Data untuk Arah Gerak Dakwah Nyata',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
-                'structure' => null,
-                'posters' => [],
+                'logo' => '/assets/img/departemen/dna-cover.jpg',
+                'cover' => '/assets/img/departemen/dna.jpg',
+                'narration' => 'Biro DNA (Data dan Analisis) hadir sebagai pusat data strategis yang mengelola, menganalisis, dan menyajikan informasi guna mendukung pengambilan kebijakan serta arah gerak UKKI yang lebih terarah dan berdampak.',
+                'members_images' => [
+                    [
+                        'src' => '/assets/img/departemen/dna-anggota-1.jpg',
+                        'title' => 'Formasi Pimpinan & Staf Biro DnA (Bagian 1)',
+                        'desc' => 'Rumaisha Kariemah (Kepala Biro), Zulfa Khusniyah (Sekretaris Biro), Shofi Syahidah Fathimah (Staf)',
+                    ],
+                    [
+                        'src' => '/assets/img/departemen/dna-anggota-2.jpg',
+                        'title' => 'Formasi Staf Biro DnA (Bagian 2)',
+                        'desc' => 'Marsabila Antikasari (Staf Biro), Marselia Dewi Anggraeni (Staf Biro)',
+                    ],
+                ],
+                'people' => [
+                    [
+                        'group' => 'Pimpinan Biro',
+                        'members' => [
+                            ['name' => 'Rumaisha Kariemah', 'position' => 'Kepala Biro DnA', 'major' => 'Arsitektur 2022'],
+                            ['name' => 'Zulfa Khusniyah', 'position' => 'Sekretaris Biro DnA', 'major' => 'Arsitektur 2024'],
+                        ]
+                    ],
+                    [
+                        'group' => 'Staf Biro DnA',
+                        'members' => [
+                            ['name' => 'Shofi Syahidah Fathimah', 'position' => 'Staff Biro DnA', 'major' => 'Pend. Tata Boga 2025'],
+                            ['name' => 'Marsabila Antikasari', 'position' => 'Staff Biro DnA', 'major' => 'Ekonomi Pembangunan 2023'],
+                            ['name' => 'Marselia Dewi Anggraeni', 'position' => 'Staff Biro DnA', 'major' => 'Pend. Tata Kecantikan 2025'],
+                        ]
+                    ]
+                ],
+                'posters' => [
+                    ['title' => 'Poster Bersama Biro DnA', 'src' => '/assets/img/departemen/dna-cover.jpg', 'caption' => 'Biro Data dan Analisis - Kabinet Satu Simfoni'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 1)', 'src' => '/assets/img/departemen/dna-anggota-1.jpg', 'caption' => 'Rumaisha Kariemah, Zulfa Khusniyah, Shofi Syahidah Fathimah'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 2)', 'src' => '/assets/img/departemen/dna-anggota-2.jpg', 'caption' => 'Marsabila Antikasari, Marselia Dewi Anggraeni'],
+                ],
             ],
             [
                 'id' => 3,
@@ -185,10 +220,36 @@ class HomeController extends Controller
                 'desc' => 'Pengawalan tata kelola administrasi, kearsipan persuratan, dan harmonisasi internal pengurus.',
                 'tagline' => 'Harmoni Internal, Tertata dan Bersinergi',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
-                'structure' => null,
-                'posters' => [],
+                'logo' => '/assets/img/departemen/mio-cover.jpg',
+                'cover' => '/assets/img/departemen/mio.jpg',
+                'narration' => 'Biro MIO berperan dalam memperkuat ukhuwah internal, mendukung koordinasi antar pengurus, serta melakukan monitoring dan evaluasi kinerja guna meningkatkan efektivitas organisasi.',
+                'members_images' => [
+                    [
+                        'src' => '/assets/img/departemen/mio-anggota-1.jpg',
+                        'title' => 'Formasi Anggota Biro MIO',
+                        'desc' => "Arinal Haq Zhahira (Kepala Biro), Azka Fauziyah (Sekretaris Biro), Lu'lu' Yazidatul Chasanah (Staff), Yusuf Abdurrahman Faiz (Staff)",
+                    ],
+                ],
+                'people' => [
+                    [
+                        'group' => 'Pimpinan Biro',
+                        'members' => [
+                            ['name' => 'Arinal Haq Zhahira', 'position' => 'Kepala Biro MIO', 'major' => 'PG PAUD 2022'],
+                            ['name' => 'Azka Fauziyah', 'position' => 'Sekretaris Biro MIO', 'major' => 'Psikologi 2023'],
+                        ]
+                    ],
+                    [
+                        'group' => 'Staf Biro MIO',
+                        'members' => [
+                            ['name' => "Lu'lu' Yazidatul Chasanah", 'position' => 'Staff Biro MIO', 'major' => 'Pend. Tata Boga 2024'],
+                            ['name' => 'Yusuf Abdurrahman Faiz', 'position' => 'Staff Biro MIO', 'major' => 'Ilmu Hukum 2024'],
+                        ]
+                    ]
+                ],
+                'posters' => [
+                    ['title' => 'Poster Bersama Biro MIO', 'src' => '/assets/img/departemen/mio-cover.jpg', 'caption' => 'Biro Manajemen Internal Organisasi - Kabinet Satu Simfoni'],
+                    ['title' => 'Poster Formasi Anggota Biro MIO', 'src' => '/assets/img/departemen/mio-anggota-1.jpg', 'caption' => "Arinal Haq Zhahira, Azka Fauziyah, Lu'lu' Yazidatul Chasanah, Yusuf Abdurrahman Faiz"],
+                ],
             ],
             [
                 'id' => 4,
@@ -198,13 +259,38 @@ class HomeController extends Controller
                 'type' => 'biro',
                 'type_label' => 'Biro',
                 'badge_class' => 'badge-biro',
-                'desc' => 'Pengembangan skill, penguatan kompetensi manajerial, dan penyelenggaraan pelatihan kepemimpinan dakwah.',
-                'tagline' => 'Tempa Kapasitas, Cetak Pemimpin Berkarakter',
+                'desc' => 'Biro Training berperan dalam membangun sistem pelatihan kader yang berkelanjutan, terarah, dan profesional guna mencetak trainer serta kader dakwah yang berkualitas dan berdampak di lingkungan kampus.',
+                'tagline' => 'Membangun Sistem Pelatihan Kader Berkelanjutan & Profesional',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
-                'structure' => null,
-                'posters' => [],
+                'logo' => '/assets/img/departemen/training.jpg',
+                'cover' => '/assets/img/departemen/training.jpg',
+                'narration' => 'Biro Training berperan dalam membangun sistem pelatihan kader yang berkelanjutan, terarah, dan profesional guna mencetak trainer serta kader dakwah yang berkualitas dan berdampak di lingkungan kampus.',
+                'members_images' => [
+                    ['src' => '/assets/img/departemen/training-anggota-1.jpg', 'title' => 'Formasi Anggota Biro Training (Bagian 1)', 'desc' => 'Zahrona Luqmana Al-Fafa, Raihanah Jilan Nuha, Desnita Setya Nugraheni'],
+                    ['src' => '/assets/img/departemen/training-anggota-2.jpg', 'title' => 'Formasi Anggota Biro Training (Bagian 2)', 'desc' => 'Silvia Rahmadani, Hanum Salsabila'],
+                ],
+                'personalia' => [
+                    [
+                        'group' => 'Pimpinan Biro Training',
+                        'members' => [
+                            ['name' => 'Zahrona Luqmana Al-Fafa', 'position' => 'Kepala Biro Training', 'major' => 'Ilmu Fisika 2023'],
+                            ['name' => 'Raihanah Jilan Nuha', 'position' => 'Sekretaris Biro Training', 'major' => 'Ilmu Kimia 2023'],
+                        ]
+                    ],
+                    [
+                        'group' => 'Staf Biro Training',
+                        'members' => [
+                            ['name' => 'Desnita Setya Nugraheni', 'position' => 'Staff Biro Training', 'major' => 'Pend. Bahasa Jawa 2023'],
+                            ['name' => 'Silvia Rahmadani', 'position' => 'Staff Biro Training', 'major' => 'PGSD 2024'],
+                            ['name' => 'Hanum Salsabila', 'position' => 'Staff Biro Training', 'major' => 'PPKn 2023'],
+                        ]
+                    ]
+                ],
+                'posters' => [
+                    ['title' => 'Poster Bersama Biro Training', 'src' => '/assets/img/departemen/training-cover.jpg', 'caption' => 'Biro Training - Kabinet Satu Simfoni'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 1)', 'src' => '/assets/img/departemen/training-anggota-1.jpg', 'caption' => 'Zahrona Luqmana Al-Fafa, Raihanah Jilan Nuha, Desnita Setya Nugraheni'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 2)', 'src' => '/assets/img/departemen/training-anggota-2.jpg', 'caption' => 'Silvia Rahmadani, Hanum Salsabila'],
+                ],
             ],
             [
                 'id' => 5,
@@ -217,9 +303,11 @@ class HomeController extends Controller
                 'desc' => 'Pintu gerbang regenerasi dakwah, rekrutmen anggota baru, dan pengelolaan jenjang kaderisasi kampus.',
                 'tagline' => 'Menyemai Benih Kebaikan, Merawat Regenerasi',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
+                'logo' => '/assets/img/departemen/kaderisasi.png',
+                'cover' => '/assets/img/departemen/kaderisasi.png',
                 'structure' => null,
+                'members_images' => [],
+                'personalia' => [],
                 'posters' => [],
             ],
             [
@@ -233,9 +321,11 @@ class HomeController extends Controller
                 'desc' => 'Penguatan ruhiyah, pembinaan tsaqafah Islam berkelanjutan, dan pemantapan karakter aktivis dakwah.',
                 'tagline' => 'Kokohkan Iman, Teguhkan Akhlak Mulia',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
+                'logo' => '/assets/img/departemen/pembinaan.png',
+                'cover' => '/assets/img/departemen/pembinaan.png',
                 'structure' => null,
+                'members_images' => [],
+                'personalia' => [],
                 'posters' => [],
             ],
             [
@@ -249,9 +339,11 @@ class HomeController extends Controller
                 'desc' => 'Pelopor syiar nilai-nilai Islam, penyelenggara kajian akbar, dan semarak dakwah di lingkungan UNNES.',
                 'tagline' => 'Gaungkan Cahaya Islam ke Seluruh Sudut Kampus',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
+                'logo' => '/assets/img/departemen/syiar.png',
+                'cover' => '/assets/img/departemen/syiar.png',
                 'structure' => null,
+                'members_images' => [],
+                'personalia' => [],
                 'posters' => [],
             ],
             [
@@ -265,9 +357,11 @@ class HomeController extends Controller
                 'desc' => 'Aksi sosial kemanusiaan, advokasi kemaslahatan, dan khidmat pengabdian nyata bagi mahasiswa & masyarakat.',
                 'tagline' => 'Tebar Maslahat, Berkhidmat untuk Umat',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
+                'logo' => '/assets/img/departemen/pelayanan-umat.png',
+                'cover' => '/assets/img/departemen/pelayanan-umat.png',
                 'structure' => null,
+                'members_images' => [],
+                'personalia' => [],
                 'posters' => [],
             ],
             [
@@ -278,13 +372,39 @@ class HomeController extends Controller
                 'type' => 'departemen',
                 'type_label' => 'Departemen',
                 'badge_class' => 'badge-departemen',
-                'desc' => 'Corong publikasi syiar digital, pers dakwah, kreasi multimedia, dan pengelolaan platform informasi UKKI.',
+                'desc' => 'Departemen Kominfo mensyiarkan konten dakwah yang informatif dan kreatif melalui media digital serta menjadi pusat publikasi kegiatan UKKI. Dengan pemanfaatan teknologi, Kominfo memperluas jangkauan dakwah dan memperkuat branding organisasi.',
                 'tagline' => 'Kreatif Menyapa, Bijak Menyampaikan Makna',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
-                'structure' => null,
-                'posters' => [],
+                'logo' => '/assets/img/departemen/kominfo.jpg',
+                'cover' => '/assets/img/departemen/kominfo.jpg',
+                'narration' => 'Departemen Kominfo mensyiarkan konten dakwah yang informatif dan kreatif melalui media digital serta menjadi pusat publikasi kegiatan UKKI. Dengan pemanfaatan teknologi, Kominfo memperluas jangkauan dakwah dan memperkuat branding organisasi.',
+                'members_images' => [
+                    ['src' => '/assets/img/departemen/kominfo-anggota-1.jpg', 'title' => 'Formasi Anggota Departemen Kominfo (Bagian 1)', 'desc' => 'Nandini Fathul Firdaus, Nadzifa Amalia Hannissaa, Maulidya Halim Mabruroh'],
+                    ['src' => '/assets/img/departemen/kominfo-anggota-2.jpg', 'title' => 'Formasi Anggota Departemen Kominfo (Bagian 2)', 'desc' => 'Aisyah Azkannisa Rahman, Stivany Gracea Gibrania, Fauzan Abdillah Khatami'],
+                ],
+                'personalia' => [
+                    [
+                        'group' => 'Pimpinan Departemen Kominfo',
+                        'members' => [
+                            ['name' => 'Nandini Fathul Firdaus', 'position' => 'Kepala Departemen Kominfo', 'major' => 'Pend. Bahasa Arab 2023'],
+                            ['name' => 'Nadzifa Amalia Hannissaa', 'position' => 'Sekretaris Departemen Kominfo', 'major' => 'Pend. Bahasa Inggris 2023'],
+                        ]
+                    ],
+                    [
+                        'group' => 'Staf Departemen Kominfo',
+                        'members' => [
+                            ['name' => 'Maulidya Halim Mabruroh', 'position' => 'Staff Departemen Kominfo', 'major' => 'PG PAUD 2024'],
+                            ['name' => 'Aisyah Azkannisa Rahman', 'position' => 'Staff Departemen Kominfo', 'major' => 'Pend. Bahasa Arab 2024'],
+                            ['name' => 'Stivany Gracea Gibrania', 'position' => 'Staff Departemen Kominfo', 'major' => 'Sastra Indonesia 2023'],
+                            ['name' => 'Fauzan Abdillah Khatami', 'position' => 'Staff Departemen Kominfo', 'major' => 'Teknologi Pendidikan 2023'],
+                        ]
+                    ]
+                ],
+                'posters' => [
+                    ['title' => 'Poster Bersama Departemen Kominfo', 'src' => '/assets/img/departemen/kominfo-cover.jpg', 'caption' => 'Departemen Kominfo - Kabinet Satu Simfoni'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 1)', 'src' => '/assets/img/departemen/kominfo-anggota-1.jpg', 'caption' => 'Nandini Fathul Firdaus, Nadzifa Amalia Hannissaa, Maulidya Halim Mabruroh'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 2)', 'src' => '/assets/img/departemen/kominfo-anggota-2.jpg', 'caption' => 'Aisyah Azkannisa Rahman, Stivany Gracea Gibrania, Fauzan Abdillah Khatami'],
+                ],
             ],
             [
                 'id' => 10,
@@ -294,13 +414,39 @@ class HomeController extends Controller
                 'type' => 'departemen',
                 'type_label' => 'Departemen',
                 'badge_class' => 'badge-departemen',
-                'desc' => 'Pembinaan karakter muslimah kampus, kajian keputrian tematik, dan pemberdayaan mahasiswi UNNES.',
+                'desc' => 'Departemen Kemuslimahan berfokus pada pembinaan dan pemberdayaan muslimah melalui pembelajaran Islam, penguatan akhlak, serta pengembangan potensi diri agar siap berdakwah dan memberi manfaat di kampus maupun masyarakat.',
                 'tagline' => 'Anggun dalam Akhlak, Cerdas dalam Karya',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
-                'structure' => null,
-                'posters' => [],
+                'logo' => '/assets/img/departemen/kemuslimahan.jpg',
+                'cover' => '/assets/img/departemen/kemuslimahan.jpg',
+                'narration' => 'Departemen Kemuslimahan berfokus pada pembinaan dan pemberdayaan muslimah melalui pembelajaran Islam, penguatan akhlak, serta pengembangan potensi diri agar siap berdakwah dan memberi manfaat di kampus maupun masyarakat.',
+                'members_images' => [
+                    ['src' => '/assets/img/departemen/kemuslimahan-anggota-1.jpg', 'title' => 'Formasi Anggota Departemen Kemuslimahan (Bagian 1)', 'desc' => 'Ony Wulan Rahmasari, Averina Dewi Amanda, Indah Rahmawati'],
+                    ['src' => '/assets/img/departemen/kemuslimahan-anggota-2.jpg', 'title' => 'Formasi Anggota Departemen Kemuslimahan (Bagian 2)', 'desc' => 'Salsabila Anjani Putri, Nurul Fauziah, Fatimah Nasya Auliya'],
+                ],
+                'personalia' => [
+                    [
+                        'group' => 'Pimpinan Departemen Kemuslimahan',
+                        'members' => [
+                            ['name' => 'Ony Wulan Rahmasari', 'position' => 'Kepala Departemen Kemuslimahan', 'major' => 'Pend. Geografi 2023'],
+                            ['name' => 'Averina Dewi Amanda', 'position' => 'Sekretaris Departemen Kemuslimahan', 'major' => 'Pend. Kepelatihan Olahraga 2023'],
+                        ]
+                    ],
+                    [
+                        'group' => 'Staf Departemen Kemuslimahan',
+                        'members' => [
+                            ['name' => 'Indah Rahmawati', 'position' => 'Staff Departemen Kemuslimahan', 'major' => 'Pend. IPS 2024'],
+                            ['name' => 'Salsabila Anjani Putri', 'position' => 'Staff Departemen Kemuslimahan', 'major' => 'PPKn 2024'],
+                            ['name' => 'Nurul Fauziah', 'position' => 'Staff Departemen Kemuslimahan', 'major' => 'Pend. Sosiologi dan Antropologi 2023'],
+                            ['name' => 'Fatimah Nasya Auliya', 'position' => 'Staff Departemen Kemuslimahan', 'major' => 'Psikologi 2025'],
+                        ]
+                    ]
+                ],
+                'posters' => [
+                    ['title' => 'Poster Bersama Departemen Kemuslimahan', 'src' => '/assets/img/departemen/kemuslimahan-cover.jpg', 'caption' => 'Departemen Kemuslimahan - Kabinet Satu Simfoni'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 1)', 'src' => '/assets/img/departemen/kemuslimahan-anggota-1.jpg', 'caption' => 'Ony Wulan Rahmasari, Averina Dewi Amanda, Indah Rahmawati'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 2)', 'src' => '/assets/img/departemen/kemuslimahan-anggota-2.jpg', 'caption' => 'Salsabila Anjani Putri, Nurul Fauziah, Fatimah Nasya Auliya'],
+                ],
             ],
             [
                 'id' => 11,
@@ -310,13 +456,38 @@ class HomeController extends Controller
                 'type' => 'departemen',
                 'type_label' => 'Departemen',
                 'badge_class' => 'badge-departemen',
-                'desc' => 'Pengawalan program bimbingan keislaman pekanan bagi mahasiswa muslim baru di tingkat universitas dan fakultas.',
+                'desc' => 'Departemen Mentoring berfokus pada pembinaan Mahasiswa Baru UNNES melalui kegiatan seperti asistensi PAI guna menumbuhkan pemahaman Islam yang baik. Selain itu, departemen ini melakukan monitoring dan evaluasi untuk memastikan keberjalanan program yang optimal dan berkelanjutan.',
                 'tagline' => 'Rangkul Sahabat Baru dalam Dekapan Dakwah',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
-                'structure' => null,
-                'posters' => [],
+                'logo' => '/assets/img/departemen/mentoring.jpg',
+                'cover' => '/assets/img/departemen/mentoring.jpg',
+                'narration' => 'Departemen Mentoring berfokus pada pembinaan Mahasiswa Baru UNNES melalui kegiatan seperti asistensi PAI guna menumbuhkan pemahaman Islam yang baik. Selain itu, departemen ini melakukan monitoring dan evaluasi untuk memastikan keberjalanan program yang optimal dan berkelanjutan.',
+                'members_images' => [
+                    ['src' => '/assets/img/departemen/mentoring-anggota-1.jpg', 'title' => 'Formasi Anggota Departemen Mentoring (Bagian 1)', 'desc' => 'Rantisi Syahidah, Maisa Lutfia Rahman, Shofiy Nur Fadilah'],
+                    ['src' => '/assets/img/departemen/mentoring-anggota-2.jpg', 'title' => 'Formasi Anggota Departemen Mentoring (Bagian 2)', 'desc' => 'Lulu Fauziyah, Nasya Aulia Putri'],
+                ],
+                'personalia' => [
+                    [
+                        'group' => 'Pimpinan Departemen Mentoring',
+                        'members' => [
+                            ['name' => 'Rantisi Syahidah', 'position' => 'Kepala Departemen Mentoring', 'major' => 'Ilmu Hukum 2023'],
+                            ['name' => 'Maisa Lutfia Rahman', 'position' => 'Sekretaris Departemen Mentoring', 'major' => 'Pend. Teknik Informatika 2024'],
+                        ]
+                    ],
+                    [
+                        'group' => 'Staf Departemen Mentoring',
+                        'members' => [
+                            ['name' => 'Shofiy Nur Fadilah', 'position' => 'Staff Departemen Mentoring', 'major' => 'Teknik Sipil 2024'],
+                            ['name' => 'Lulu Fauziyah', 'position' => 'Staff Departemen Mentoring', 'major' => 'Teknik Komputer 2024'],
+                            ['name' => 'Nasya Aulia Putri', 'position' => 'Staff Departemen Mentoring', 'major' => 'Pend. Kimia 2025'],
+                        ]
+                    ]
+                ],
+                'posters' => [
+                    ['title' => 'Poster Bersama Departemen Mentoring', 'src' => '/assets/img/departemen/mentoring-cover.jpg', 'caption' => 'Departemen Mentoring - Kabinet Satu Simfoni'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 1)', 'src' => '/assets/img/departemen/mentoring-anggota-1.jpg', 'caption' => 'Rantisi Syahidah, Maisa Lutfia Rahman, Shofiy Nur Fadilah'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 2)', 'src' => '/assets/img/departemen/mentoring-anggota-2.jpg', 'caption' => 'Lulu Fauziyah, Nasya Aulia Putri'],
+                ],
             ],
             [
                 'id' => 12,
@@ -329,9 +500,11 @@ class HomeController extends Controller
                 'desc' => 'Pusat kajian isu strategis keumatan, respon kebijakan kampus dan kebangsaan secara kritis & solutif.',
                 'tagline' => 'Kritis Menelaah, Solutif Bertindak',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
+                'logo' => '/assets/img/departemen/kajian-strategis.png',
+                'cover' => '/assets/img/departemen/kajian-strategis.png',
                 'structure' => null,
+                'members_images' => [],
+                'personalia' => [],
                 'posters' => [],
             ],
             [
@@ -342,13 +515,40 @@ class HomeController extends Controller
                 'type' => 'departemen',
                 'type_label' => 'Departemen',
                 'badge_class' => 'badge-departemen',
-                'desc' => 'Kemandirian finansial dakwah, kewirausahaan kreatif mahasiswa, dan pengelolaan unit Store UKKI UNNES.',
+                'desc' => 'Departemen Ekraf berperan dalam menjalin kerjasama eksternal serta mengembangkan unit usaha sebagai sarana fundraising guna mendukung keberlangsungan program kerja dan kemandirian finansial UKKI.',
                 'tagline' => 'Mandiri Finansial, Berdaya untuk Dakwah',
                 'kabinet' => 'Kabinet Satu Simfoni',
-                'logo' => null,
-                'cover' => null,
-                'structure' => null,
-                'posters' => [],
+                'logo' => '/assets/img/departemen/ekonomi-kreatif.jpg',
+                'cover' => '/assets/img/departemen/ekonomi-kreatif.jpg',
+                'narration' => 'Departemen Ekraf berperan dalam menjalin kerjasama eksternal serta mengembangkan unit usaha sebagai sarana fundraising guna mendukung keberlangsungan program kerja dan kemandirian finansial UKKI.',
+                'members_images' => [
+                    ['src' => '/assets/img/departemen/ekonomi-kreatif-anggota-1.jpg', 'title' => 'Formasi Anggota Departemen Ekraf (Bagian 1)', 'desc' => 'Irsyad Zidan Arrifqi, Hana Syakira, Lailia Bunga Nirmala, Nur Malikah'],
+                    ['src' => '/assets/img/departemen/ekonomi-kreatif-anggota-2.jpg', 'title' => 'Formasi Anggota Departemen Ekraf (Bagian 2)', 'desc' => 'Shalsa Shabira Rahardjo, Kayla Nur Fadhila, Hasna Miki Rifdahtunnisa'],
+                ],
+                'personalia' => [
+                    [
+                        'group' => 'Pimpinan Departemen Ekonomi Kreatif',
+                        'members' => [
+                            ['name' => 'Irsyad Zidan Arrifqi', 'position' => 'Kepala Departemen Ekraf', 'major' => 'Ekonomi dan Keuangan Islam 2023'],
+                            ['name' => 'Hana Syakira', 'position' => 'Sekretaris Departemen Ekraf', 'major' => 'Manajemen 2023'],
+                        ]
+                    ],
+                    [
+                        'group' => 'Staf Departemen Ekonomi Kreatif',
+                        'members' => [
+                            ['name' => 'Lailia Bunga Nirmala', 'position' => 'Staff Departemen Ekraf', 'major' => 'Pend. Bahasa Arab'],
+                            ['name' => 'Nur Malikah', 'position' => 'Staff Departemen Ekraf', 'major' => 'Psikologi'],
+                            ['name' => 'Shalsa Shabira Rahardjo', 'position' => 'Staff Departemen Ekraf', 'major' => 'Pend. Bahasa Arab 2023'],
+                            ['name' => 'Kayla Nur Fadhila', 'position' => 'Staff Departemen Ekraf', 'major' => 'Pend. Tata Busana'],
+                            ['name' => 'Hasna Miki Rifdahtunnisa', 'position' => 'Staff Departemen Ekraf', 'major' => 'Pend. Bahasa Arab'],
+                        ]
+                    ]
+                ],
+                'posters' => [
+                    ['title' => 'Poster Bersama Departemen Ekonomi Kreatif', 'src' => '/assets/img/departemen/ekonomi-kreatif-cover.jpg', 'caption' => 'Departemen Ekraf - Kabinet Satu Simfoni'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 1)', 'src' => '/assets/img/departemen/ekonomi-kreatif-anggota-1.jpg', 'caption' => 'Irsyad Zidan Arrifqi, Hana Syakira, Lailia Bunga Nirmala, Nur Malikah'],
+                    ['title' => 'Poster Formasi Anggota (Bagian 2)', 'src' => '/assets/img/departemen/ekonomi-kreatif-anggota-2.jpg', 'caption' => 'Shalsa Shabira Rahardjo, Kayla Nur Fadhila, Hasna Miki Rifdahtunnisa'],
+                ],
             ],
         ];
     }
@@ -634,5 +834,192 @@ class HomeController extends Controller
             'pageTitle' => 'Lainnya - UKKI UNNES',
             'activePage' => 'lainnya'
         ]);
+    }
+
+    /**
+     * Master data kegiatan dan agenda resmi UKKI UNNES
+     */
+    public function getKegiatanData(): array
+    {
+        return [
+            'bulan_april' => [
+                'nama_bulan' => 'April',
+                'badge' => 'Bulan Berjalan',
+                'items' => [
+                    [
+                        'id' => 'pkmit-1-akbar',
+                        'title' => 'PKMIT 1 Akbar',
+                        'badge' => 'Kaderisasi Akbar',
+                        'category' => 'Pelatihan & Kepemimpinan',
+                        'desc' => 'Kegiatan pelatihan kepemimpinan mahasiswa Islam tingkat 1 yang dilaksanakan serentak melibatkan LDJ, LDF, dan LDK se-UNNES Raya.',
+                        'scope' => 'LDJ, LDF, dan LDK se-UNNES Raya',
+                        'status' => 'Mendatang',
+                    ],
+                    [
+                        'id' => 'sarasehan-1',
+                        'title' => 'Sarasehan 1',
+                        'badge' => 'Konsolidasi Dakwah',
+                        'category' => 'Sinergi Kelembagaan',
+                        'desc' => 'Kegiatan Sarasehan Lembaga Dakwah Kampus se-Unnes Raya untuk mempererat ukhuwah, menyelaraskan persepsi gerak, dan mengokohkan sinergi syiar kampus.',
+                        'scope' => 'LDK se-UNNES Raya',
+                        'status' => 'Mendatang',
+                        'attachment_img' => '/assets/img/kegiatan/sarasehan-1447.jpg',
+                    ],
+                    [
+                        'id' => 'go-toseba-growth-class',
+                        'title' => 'Grand Opening TOSEBA x Growth Class',
+                        'badge' => 'Mentoring & Kajian',
+                        'category' => 'Kajian & Pemberdayaan',
+                        'desc' => 'Kajian klasikal sekaligus pembukaan Toseba dan kelas mentoring Lembaga dakwah se-Unnes Raya.',
+                        'scope' => 'Lembaga Dakwah se-UNNES Raya',
+                        'status' => 'Mendatang',
+                        'logo' => '/assets/img/kegiatan/logo-ukki-official.png',
+                    ],
+                    [
+                        'id' => 'training-kaderisasi',
+                        'title' => 'Training Kaderisasi',
+                        'badge' => 'Pengembangan SDM',
+                        'category' => 'Kaderisasi Internal',
+                        'desc' => 'Pelatihan untuk membentuk, mendidik, dan mengembangkan anggota organisasi menjadi kader yang kompeten, loyal, dan militan.',
+                        'scope' => 'Kader & Fungsionaris UKKI',
+                        'status' => 'Mendatang',
+                    ],
+                    [
+                        'id' => 'lokakarya-kaderisasi',
+                        'title' => 'Lokakarya Kaderisasi',
+                        'badge' => 'Perumusan Sistem',
+                        'category' => 'Strategis & Kurikulum',
+                        'desc' => 'Pertemuan yang bertujuan merumuskan, mengevaluasi, dan menyepakati sistem kaderisasi kedepannya.',
+                        'scope' => 'Fungsionaris Kaderisasi se-UNNES',
+                        'status' => 'Mendatang',
+                    ],
+                    [
+                        'id' => 'upgrading-halalbihalal-1',
+                        'title' => 'Up Grading dan Halal Bihalal 1',
+                        'badge' => 'Harmoni Fungsionaris',
+                        'category' => 'Internal Organisasi',
+                        'desc' => 'Up grading internal fungsionaris UKKI sekaligus halal bihalal fungsionaris.',
+                        'scope' => 'Seluruh Fungsionaris UKKI UNNES',
+                        'status' => 'Mendatang',
+                    ],
+                ],
+            ],
+            'bulan_september' => [
+                'nama_bulan' => 'September',
+                'status_label' => 'Soon !!',
+                'desc' => 'Agenda kebaikan dan syiar dakwah bulan September akan segera hadir. Pantau terus kanal informasi resmi UKKI UNNES!',
+            ],
+            'event_spesial' => [
+                'title' => 'Event Spesial UKKI',
+                'desc' => 'Event Spesial UKKI merupakan program unggulan yang diselenggarakan oleh UKKI Universitas Negeri Semarang sebagai bentuk kontribusi dakwah, edukasi, dan pelayanan umat dalam skala yang lebih luas dan berdampak. Kegiatan ini dirancang secara kreatif dan kolaboratif untuk menyatukan semangat keislaman, kepedulian sosial, dan kebersamaan sivitas akademika maupun masyarakat umum.',
+                'quote' => 'Dakwah bukan hanya tentang bicara, tapi tentang gerak, karya, dan keteladanan.',
+                'invitation' => 'Mari jadi bagian dari momen spesial ini. Gabung dan tebarkan kebermanfaatan bersama UKKI!',
+                'items' => [
+                    [
+                        'title' => 'GRADIKA (Gema Ramadan di Kampus)',
+                        'badge' => 'Syiar Ramadan',
+                        'desc' => 'Program syiar tahunan bulan suci Ramadan dengan ragam agenda kebaikan, kajian menjelang berbuka, santunan, dan tarawih bersama di lingkungan kampus.',
+                    ],
+                    [
+                        'title' => 'UNIFAW',
+                        'badge' => 'Festival Islami',
+                        'desc' => 'Lomba, bazar, dan pentas seni Islami, serta kajian akbar kepalestinaan yang menghimpun seluruh elemen mahasiswa.',
+                    ],
+                    [
+                        'title' => 'Talkshow Kemuslimahan dan Lomba-lomba',
+                        'badge' => 'Kemuslimahan',
+                        'desc' => 'Pemberdayaan dan edukasi muslimah seputar isu kontemporer, kemandirian karya, serta aneka perlombaan kreatif keputrian.',
+                    ],
+                    [
+                        'title' => 'Kajian Akbar bersama Narasumber Inspiratif',
+                        'badge' => 'Kajian Nasional',
+                        'desc' => 'Kajian akbar dengan menghadirkan dai dan tokoh inspiratif nasional untuk memperluas cakrawala keilmuan dan ruhiyah mahasiswa.',
+                    ],
+                    [
+                        'title' => 'Aksi Sosial & Pelayanan Umat',
+                        'badge' => 'Khidmat Umat',
+                        'desc' => 'Aksi nyata kemanusiaan mencakup donor darah, santunan anak yatim dan dhuafa, serta aksi berbagi kebaikan bagi masyarakat.',
+                    ],
+                    [
+                        'title' => 'Peluncuran Program & Gerakan Dakwah Kreatif',
+                        'badge' => 'Inovasi Dakwah',
+                        'desc' => 'Inisiasi gerakan kebaikan baru, transformasi digital media syiar, serta peresmian sarana penunjang aktivitas dakwah kampus.',
+                    ],
+                ],
+            ],
+            'publikasi_kegiatan' => [
+                [
+                    'title' => 'Pelantikan dan Rapat Kerja',
+                    'category' => 'Organisasi',
+                    'desc' => 'Pengukuhan resmi pengurus kabinet UKKI UNNES dan penetapan arah kebijakan serta program kerja strategis satu periode.',
+                    'badge' => 'Terlaksana',
+                ],
+                [
+                    'title' => 'Temu Perdana',
+                    'category' => 'Ukhuwah',
+                    'desc' => 'Pertemuan silaturahmi awal fungsionaris UKKI untuk membangun sinergi tim, kehangatan ukhuwah, dan komitmen amanah.',
+                    'badge' => 'Terlaksana',
+                ],
+                [
+                    'title' => 'Gradika (Gema Ramadan di Kampus)',
+                    'category' => 'Syiar Ramadan',
+                    'desc' => 'Rangkaian semarak bulan suci Ramadan di kampus UNNES dengan kajian inspiratif, buka puasa bersama, dan aksi kepedulian umat.',
+                    'badge' => 'Terlaksana',
+                ],
+                [
+                    'title' => 'Pesantren Kilat',
+                    'category' => 'Edukasi & Pembinaan',
+                    'desc' => 'Pembekalan dasar keislaman, tadarus Al-Qur\'an, dan pembinaan adab bagi mahasiswa dan generasi muda.',
+                    'badge' => 'Terlaksana',
+                ],
+                [
+                    'title' => 'Aksi Kepalestinaan',
+                    'category' => 'Solidaritas Kemanusiaan',
+                    'desc' => 'Suara kepedulian sivitas akademika UNNES untuk Palestina melalui edukasi keumatan, doa bersama, dan penyaluran donasi kemanusiaan.',
+                    'badge' => 'Terlaksana',
+                ],
+                [
+                    'title' => 'Temu Mentor',
+                    'category' => 'Mentoring PAI',
+                    'desc' => 'Konsolidasi dan pengarahan mentor PAI se-universitas guna mengawal pendampingan keagamaan mahasiswa baru.',
+                    'badge' => 'Terlaksana',
+                ],
+                [
+                    'title' => 'PKMIT 1 Akbar',
+                    'category' => 'Kaderisasi',
+                    'desc' => 'Pelatihan kepemimpinan mahasiswa Islam tingkat 1 se-UNNES Raya untuk membekali calon aktivis dakwah kampus.',
+                    'badge' => 'Terlaksana',
+                ],
+            ],
+            'lampiran' => [
+                [
+                    'id' => 'sarasehan-1447',
+                    'title' => 'Sarasehan 1447/1448 H',
+                    'subtitle' => 'Dokumentasi Konsolidasi Lembaga Dakwah se-UNNES Raya',
+                    'type' => 'Dokumentasi Foto',
+                    'image' => '/assets/img/kegiatan/sarasehan-1447.jpg',
+                    'desc' => 'Dokumentasi fungsionaris UKKI UNNES bersama perwakilan pimpinan Lembaga Dakwah Fakultas (LDF) dan Lembaga Dakwah Jurusan (LDJ) se-UNNES Raya dalam forum Sarasehan Akbar di Masjid Ulul Albab UNNES.',
+                    'badge' => 'Foto Kegiatan',
+                ],
+                [
+                    'id' => 'go-muslimah-academy',
+                    'title' => 'Grand Opening Muslimah Academy',
+                    'subtitle' => 'Pusat Pembinaan & Aktualisasi Muslimah Berdaya',
+                    'type' => 'Identitas Program',
+                    'image' => '/assets/img/kegiatan/logo-ukki-official.png',
+                    'desc' => 'Peresmian ruang belajar dan pembinaan berkala bagi mahasiswi muslimah UNNES untuk mendalami adab, keilmuan Islam, kepemimpinan, dan keterampilan mandiri.',
+                    'badge' => 'Kemuslimahan',
+                ],
+                [
+                    'id' => 'go-toseba-growth-class',
+                    'title' => 'Grand Opening TOSEBA x Growth Class',
+                    'subtitle' => 'Sinergi Kemandirian Finansial & Kapasitas Dakwah Kampus',
+                    'type' => 'Identitas Program',
+                    'image' => '/assets/img/kegiatan/logo-ukki-official.png',
+                    'desc' => 'Peluncuran unit kewirausahaan TOSEBA dipadukan dengan kelas mentoring intensif Growth Class untuk menguatkan kompetensi kader dakwah di kampus.',
+                    'badge' => 'Ekraf x Mentoring',
+                ],
+            ],
+        ];
     }
 }

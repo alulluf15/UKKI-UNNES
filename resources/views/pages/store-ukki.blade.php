@@ -365,24 +365,18 @@ $inventoryItems = [
                     </div>
                 </div>
 
-                <!-- Call to action di SOP -->
-                <div style="background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-top:24px;">
-                    <div>
-                        <h4 style="font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px;">Langkah Selanjutnya</h4>
-                        <p style="color:var(--mut);font-size:14px;">Silakan cek daftar barang yang tersedia atau langsung konsultasikan dengan CP.</p>
-                    </div>
-                    <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                        <button type="button" class="btn" onclick="goToInventoryTab()" style="background:var(--card);color:var(--ink);border:1px solid var(--line);">
-                            📦 Cek Barang Tersedia
-                        </button>
-                        <a href="https://api.whatsapp.com/send/?phone=%2B6281332672708&text=Assalamu%27alaikum%20Admin%20Inventaris%20UKKI,%20saya%20sudah%20membaca%20SOP%20dan%20ingin%20meminjam%20alat&type=phone_number&app_absent=0" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="btn-wa">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.436 5.176L2 22l4.982-1.393C8.423 21.437 10.151 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.637 0-3.161-.485-4.441-1.319l-.318-.206-2.96.828.84-2.884-.226-.339C4.015 14.814 3.5 13.454 3.5 12 3.5 7.313 7.313 3.5 12 3.5c4.686 0 8.5 3.813 8.5 8.5 0 4.687-3.814 8.5-8.5 8.5z"/></svg>
-                            Hubungi CP (0813-3267-2708)
-                        </a>
-                    </div>
+                <!-- Tombol Khusus Mengarahkan ke CP -->
+                <div class="inv-cp-action-wrap">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B6281332672708&text=Assalamu%27alaikum%20Admin%20Inventaris%20UKKI,%20saya%20sudah%20membaca%20SOP%20dan%20ingin%20konsultasi%20peminjaman%20alat&type=phone_number&app_absent=0" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="inv-btn-cp-special"
+                       aria-label="Hubungi CP Inventaris via WhatsApp">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.436 5.176L2 22l4.982-1.393C8.423 21.437 10.151 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.637 0-3.161-.485-4.441-1.319l-.318-.206-2.96.828.84-2.884-.226-.339C4.015 14.814 3.5 13.454 3.5 12 3.5 7.313 7.313 3.5 12 3.5c4.686 0 8.5 3.813 8.5 8.5 0 4.687-3.814 8.5-8.5 8.5z"/>
+                        </svg>
+                        <span>Hubungi CP</span>
+                    </a>
                 </div>
 
             </section>
@@ -392,86 +386,34 @@ $inventoryItems = [
                  ========================================== -->
             <section role="tabpanel" id="panel-pinjaman" aria-labelledby="tab-pinjaman" class="inv-tabpanel" hidden tabindex="0">
                 
-                <div style="margin-bottom: 24px;">
-                    <div class="inv-toolbar">
-                        <div>
-                            <h2 class="inv-section-title">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--pri);">
-                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                                </svg>
-                                Barang-Barang yang Tersedia
-                            </h2>
-                            <p class="inv-section-desc">Peralatan audio, kelistrikan, bendera, dan perlengkapan kegiatan dakwah yang siap dipinjam.</p>
-                        </div>
-
-                        <!-- Live Search & Category Filter Landmark -->
-                        <search class="inv-search-box">
-                            <label for="inv-search-input" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Cari barang inventaris</label>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--mut);">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                            <input type="search" id="inv-search-input" placeholder="Cari barang inventaris..." oninput="filterInventory()">
-                        </search>
-                    </div>
-
-                    <!-- Cards Grid (24 Barang Resmi Langsung Tampil) -->
-                    <div class="inv-cards-grid" id="inventory-grid">
-                        @foreach($inventoryItems as $item)
-                            @php
-                                $itemImg = getInventoryItemImg($item['id']);
-                            @endphp
-                            <article class="inv-item-card" data-category="{{ $item['category'] }}" data-name="{{ strtolower($item['name']) }}">
-                                <div class="inv-item-thumb">
-                                    @if($itemImg)
-                                        <img src="{{ $itemImg }}" alt="{{ $item['name'] }}" loading="lazy">
-                                    @else
-                                        <div class="inv-thumb-placeholder" aria-label="Foto barang nomor {{ $item['id'] }}">
-                                            <span class="inv-item-num">No. {{ $item['id'] }}</span>
-                                            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                                <polyline points="21 15 16 10 5 21"></polyline>
-                                            </svg>
-                                            <span style="font-size:11px;color:var(--mut);margin-top:6px;font-weight:600;">Foto Menyusul</span>
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="inv-item-body">
-                                    <h3 class="inv-item-name">{{ $item['name'] }}</h3>
-                                    <span class="inv-item-price">{{ $item['price'] }}</span>
-                                    @php
-                                        $waItemMsg = "Assalamu'alaikum Admin Inventaris UKKI, saya ingin meminjam " . $item['name'] . ". Apakah alat ini tersedia?";
-                                        $waItemUrl = "https://api.whatsapp.com/send/?phone=%2B6281332672708&text=" . rawurlencode($waItemMsg) . "&type=phone_number&app_absent=0";
-                                    @endphp
-                                    <a href="{{ $waItemUrl }}" 
-                                       target="_blank" 
-                                       rel="noopener noreferrer" 
-                                       class="btn-pinjam-card"
-                                       aria-label="Hubungi WhatsApp untuk pinjam {{ $item['name'] }}">
-                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.419-.101.824zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.436 5.176L2 22l4.982-1.393C8.423 21.437 10.151 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.637 0-3.161-.485-4.441-1.319l-.318-.206-2.96.828.84-2.884-.226-.339C4.015 14.814 3.5 13.454 3.5 12 3.5 7.313 7.313 3.5 12 3.5c4.686 0 8.5 3.813 8.5 8.5 0 4.687-3.814 8.5-8.5 8.5z"/>
+                <!-- Cards Grid (24 Barang Resmi Langsung Tampil) -->
+                <div class="inv-cards-grid" id="inventory-grid">
+                    @foreach($inventoryItems as $item)
+                        @php
+                            $itemImg = getInventoryItemImg($item['id']);
+                        @endphp
+                        <article class="inv-item-card" data-category="{{ $item['category'] }}" data-name="{{ strtolower($item['name']) }}">
+                            <div class="inv-item-thumb">
+                                @if($itemImg)
+                                    <img src="{{ $itemImg }}" alt="{{ $item['name'] }}" loading="lazy">
+                                @else
+                                    <div class="inv-thumb-placeholder" aria-label="Foto barang nomor {{ $item['id'] }}">
+                                        <span class="inv-item-num">No. {{ $item['id'] }}</span>
+                                        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                            <polyline points="21 15 16 10 5 21"></polyline>
                                         </svg>
-                                        Hubungi WhatsApp
-                                    </a>
-                                </div>
-                            </article>
-                        @endforeach
-                    </div>
-
-                    <!-- No Results Notice -->
-                    <div id="no-inventory-match" style="display:none;text-align:center;padding:50px 20px;background:var(--card);border-radius:20px;border:1px dashed var(--line);margin-bottom:30px;">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--mut);margin-bottom:12px;" aria-hidden="true">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <h3 style="font-size:18px;margin-bottom:6px;">Barang Tidak Ditemukan</h3>
-                        <p style="color:var(--mut);font-size:14px;max-width:400px;margin:0 auto 16px;">Nama barang atau kategori yang Anda cari belum ada di daftar. Anda dapat langsung bertanya ke CP ketersediaan barang lainnya.</p>
-                        <a href="https://api.whatsapp.com/send/?phone=%2B6281332672708&text=Assalamu%27alaikum%20Admin%20Inventaris%20UKKI,%20apakah%20tersedia...&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="btn">
-                            Tanyakan Langsung ke CP
-                        </a>
-                    </div>
+                                        <span style="font-size:11px;color:var(--mut);margin-top:6px;font-weight:600;">Foto Menyusul</span>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="inv-item-body">
+                                <h3 class="inv-item-name">{{ $item['name'] }}</h3>
+                                <span class="inv-item-price">{{ $item['price'] }}</span>
+                            </div>
+                        </article>
+                    @endforeach
                 </div>
 
             </section>
@@ -527,31 +469,6 @@ $inventoryItems = [
             inventoryTab.focus();
             switchTab(inventoryTab);
             inventoryTab.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }
-
-    // Live Search Filtering
-    function filterInventory() {
-        const input = document.getElementById('inv-search-input');
-        const query = input ? input.value.toLowerCase().trim() : '';
-        const cards = document.querySelectorAll('#inventory-grid .inv-item-card');
-        let visibleCount = 0;
-
-        cards.forEach(card => {
-            const searchIndex = card.getAttribute('data-name');
-            const matchQuery = (!query || searchIndex.includes(query));
-
-            if (matchQuery) {
-                card.style.display = 'flex';
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-            }
-        });
-
-        const noMatchEl = document.getElementById('no-inventory-match');
-        if (noMatchEl) {
-            noMatchEl.style.display = (visibleCount === 0) ? 'block' : 'none';
         }
     }
 </script>

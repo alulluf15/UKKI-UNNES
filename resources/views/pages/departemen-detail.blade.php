@@ -6,6 +6,10 @@ $tagline = $dept['tagline'] ?? 'Satukan Sinergi, Selaraskan Aksi';
 $hasStructure = !empty($dept['structure']);
 $structure = $dept['structure'] ?? [];
 $posters = $dept['posters'] ?? [];
+$membersImages = $dept['members_images'] ?? [];
+$people = $dept['people'] ?? [];
+$narration = $dept['narration'] ?? null;
+$logoSrc = ($dept['slug'] === 'ph') ? '/assets/img/departemen/ph-logo.png' : '/assets/img/departemen/ph-logo.png';
 ?>
 
 <!-- Header Banner Halaman -->
@@ -27,42 +31,16 @@ $posters = $dept['posters'] ?? [];
     <div class="wrap">
 
         <!-- Navigasi Kembali -->
-        <div style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div style="margin-bottom: 24px;">
             <a href="/departemen" class="btn" style="background:var(--card);border:1px solid var(--line);color:var(--ink);box-shadow:var(--sh);">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
                 Kembali ke Departemen & Biro
             </a>
-            <div style="display:flex;align-items:center;gap:8px;">
-                <span class="dept-detail-kabinet-badge">
-                    🏛️ <?= htmlspecialchars($kabinetName) ?>
-                </span>
-                <span class="dept-cover-badge <?= $dept['badge_class'] ?>" style="position:static;display:inline-block;">
-                    <?= htmlspecialchars($dept['type_label']) ?>
-                </span>
-            </div>
-        </div>
-
-        <!-- Hero Card Profil Bidang -->
-        <div class="dept-detail-hero">
-            <?php if (!empty($dept['logo'])): ?>
-                <div class="dept-detail-logo-wrap">
-                    <img src="<?= htmlspecialchars($dept['logo']) ?>" alt="Logo <?= htmlspecialchars($dept['name']) ?>">
-                </div>
-            <?php endif; ?>
-            <div class="dept-detail-info">
-                <div class="dept-detail-badge-row">
-                    <span class="dept-detail-kabinet-badge"><?= htmlspecialchars($kabinetName) ?></span>
-                    <span style="font-size:12px;color:var(--mut);">Periode 1446/1447 H</span>
-                </div>
-                <h2 class="dept-detail-title"><?= htmlspecialchars($dept['name']) ?></h2>
-                <p class="dept-detail-tagline">"<?= htmlspecialchars($tagline) ?>"</p>
-                <p class="dept-detail-desc"><?= htmlspecialchars($dept['desc']) ?></p>
-            </div>
         </div>
 
         <?php if ($hasStructure): ?>
             <!-- =========================================================================
-                 STRUKTUR KEPENGURUSAN URUTAN MAS'UL, WAMAS'UL, KORWAT, SEKUM, BENDUM
+                 STRUKTUR KEPENGURUSAN URUTAN MAS'UL, WAMAS'UL, KORWAT, SEKUM, BENDUM (PH)
                  ========================================================================= -->
             <div class="dept-section-title-wrap">
                 <span class="dept-section-badge">Bagan Kepemimpinan</span>
@@ -240,55 +218,34 @@ $posters = $dept['posters'] ?? [];
                 </div>
             <?php endif; ?>
 
-            <!-- =========================================================================
-                 GALERI POSTER ASLI RESOLUSI PENUH (Bukan Pop-Up)
-                 ========================================================================= -->
-            <?php if (!empty($posters)): ?>
-                <div class="dept-section-title-wrap" style="margin-top:60px;">
-                    <span class="dept-section-badge">Galeri Dokumentasi</span>
-                    <h2>Koleksi Poster Anggota</h2>
-                    <p>Klik pada poster untuk melihat atau mengunduh dalam resolusi asli.</p>
-                </div>
-
-                <div class="dept-posters-showcase-grid">
-                    <?php foreach ($posters as $p): ?>
-                        <div class="dept-poster-card">
-                            <a href="<?= htmlspecialchars($p['src']) ?>" target="_blank" rel="noopener noreferrer" class="dept-poster-img-link" title="Klik untuk membuka gambar penuh">
-                                <img src="<?= htmlspecialchars($p['src']) ?>" alt="<?= htmlspecialchars($p['title']) ?>" loading="lazy">
-                                <span class="dept-poster-overlay-btn">Buka Foto ↗</span>
-                            </a>
-                            <div class="dept-poster-meta">
-                                <h4 class="dept-poster-title"><?= htmlspecialchars($p['title']) ?></h4>
-                                <p class="dept-poster-sub"><?= htmlspecialchars($p['caption']) ?></p>
-                            </div>
+        <?php elseif (!empty($membersImages)): ?>
+            <!-- Foto Anggota Sesuai Permintaan User -->
+            <div class="dept-members-showcase-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:28px;margin-bottom:44px;<?= count($membersImages) === 1 ? 'max-width:480px;margin-left:auto;margin-right:auto;' : '' ?>">
+                <?php foreach ($membersImages as $img): ?>
+                    <div class="dept-poster-card">
+                        <div class="dept-poster-img-link">
+                            <img src="<?= htmlspecialchars($img['src']) ?>" alt="<?= htmlspecialchars($img['title']) ?>" loading="lazy">
                         </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
 
         <?php else: ?>
-            <!-- Tampilan Halaman untuk Departemen yang Belum Memiliki Unggahan Foto -->
-            <div style="background:var(--card);border:1px dashed var(--line);border-radius:24px;padding:48px 24px;text-align:center;max-width:720px;margin:30px auto;box-shadow:var(--sh);">
-                <div style="width:68px;height:68px;border-radius:50%;background:rgba(0,121,107,0.1);display:grid;place-items:center;color:var(--pri);margin:0 auto 16px;">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <!-- Tampilan Bersih untuk Departemen yang Belum Memiliki Unggahan Foto -->
+            <div style="background:var(--card);border:1px solid var(--line);border-radius:20px;padding:56px 24px;text-align:center;max-width:640px;margin:28px auto;box-shadow:var(--sh);">
+                <div style="width:64px;height:64px;border-radius:50%;background:rgba(13, 74, 58, 0.08);display:grid;place-items:center;color:var(--pri);margin:0 auto 16px;">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                         <circle cx="8.5" cy="8.5" r="1.5"></circle>
                         <polyline points="21 15 16 10 5 21"></polyline>
                     </svg>
                 </div>
-                <h3 style="font:700 22px 'Poppins';color:var(--ink);margin-bottom:8px;">Dokumentasi <?= htmlspecialchars($dept['name']) ?></h3>
-                <p style="color:var(--mut);font-size:14.5px;line-height:1.6;margin-bottom:24px;">
-                    Halaman ini telah disiapkan untuk menampilkan bagan kepengurusan dan formasi anggota <?= htmlspecialchars($dept['name']) ?>.
+                <h3 style="font:700 20px 'Poppins',sans-serif;color:var(--ink);margin-bottom:8px;">Dokumentasi & Formasi Belum Tersedia</h3>
+                <p style="color:var(--mut);font-size:14px;line-height:1.6;margin-bottom:24px;max-width:440px;margin-left:auto;margin-right:auto;">
+                    Dokumentasi foto dan formasi kepengurusan <?= htmlspecialchars($dept['name']) ?> saat ini belum diunggah.
                 </p>
-                <div style="background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 20px;font-size:13px;color:var(--mut);text-align:left;max-width:540px;margin:0 auto 24px;line-height:1.6;">
-                    <strong style="color:var(--ink);display:block;margin-bottom:6px;">📁 Panduan Berkas Gambar:</strong>
-                    Simpan gambar di direktori <code>public/assets/img/departemen/</code>:<br>
-                    • Foto Sampul: <code><?= htmlspecialchars($dept['slug']) ?>.jpg</code> (atau .png)<br>
-                    • Foto Anggota 1: <code><?= htmlspecialchars($dept['slug']) ?>-anggota-1.jpg</code><br>
-                    • Foto Anggota 2: <code><?= htmlspecialchars($dept['slug']) ?>-anggota-2.jpg</code>
-                </div>
-                <a href="/departemen" class="btn" style="background:var(--pri);color:#fff;">
-                    Kembali ke Daftar Bidang
+                <a href="/departemen" class="btn" style="background:var(--pri);color:#fff;font-size:13.5px;padding:10px 22px;">
+                    Kembali ke Departemen & Biro
                 </a>
             </div>
         <?php endif; ?>
